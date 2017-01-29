@@ -5,6 +5,4 @@
 
 ## Code Coverage
 
-### Sunburst
-
 ![](https://codecov.io/gh/ValManP/NetAnalyzer/graphs/sunburst.svg)
