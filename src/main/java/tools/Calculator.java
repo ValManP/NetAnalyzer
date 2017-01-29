@@ -2,7 +2,7 @@
 package tools;
 
 /**
- * Calculator
+ * Calculator.
  */
 public class Calculator {
     /**
