@@ -8,11 +8,11 @@ public class Calculator
 {
     /**
      *
-     * @param a
-     * @param b
+     * @param a first elem
+     * @param b second elem
      * @return sum
      */
-    public int add (int a, int b)
+    public int add ( int a, int b )
     {
         return a + b;
     }
