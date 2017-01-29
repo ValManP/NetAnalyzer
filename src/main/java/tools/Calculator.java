@@ -1,3 +1,4 @@
+// Created by Valerii Pozdiaev on 2017
 package tools;
 
 /**
@@ -5,6 +6,12 @@ package tools;
  */
 public class Calculator
 {
+    /**
+     *
+     * @param a
+     * @param b
+     * @return sum
+     */
     public int add (int a, int b)
     {
         return a + b;
