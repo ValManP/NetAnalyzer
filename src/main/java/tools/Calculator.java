@@ -1,8 +1,7 @@
 // Created by Valerii Pozdiaev on 2017
 package tools;
 
-/**
- * Calculator
+/** Calculator
  */
 public class Calculator {
     /**
@@ -11,7 +10,7 @@ public class Calculator {
      * @param b second elem
      * @return sum
      */
-    final public int add (final int a, final int b) {
+    public final int add(final int a, final int b) {
         return a + b;
     }
 }
