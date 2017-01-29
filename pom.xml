@@ -53,7 +53,7 @@
 			 <plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-checkstyle-plugin</artifactId>
-			    <version>2.6</version>
+			    <version>${maven.checkstyle.plugin.version}</version>
 			    <configuration>
 				<configLocation>src/config/checkstyle.xml</configLocation>
 				    <consoleOutput>true</consoleOutput>
