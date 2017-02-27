@@ -11,4 +11,8 @@ public class CommonTool {
     public static boolean isBelong(int x, int rangeTo) {
         return isBelong(x, 0, rangeTo);
     }
+
+    public static boolean isExist(Object object) {
+        return !(object == null);
+    }
 }
