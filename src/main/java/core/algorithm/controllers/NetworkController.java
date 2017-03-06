@@ -3,14 +3,25 @@
  */
 package core.algorithm.controllers;
 
+import core.algorithm.inventory.networkelement.SwitchNetworkElement;
 import core.algorithm.model.DoubleNetwork;
-import core.algorithm.model.NetworkElement;
+import core.algorithm.inventory.NetworkElement;
 import lpsolve.LpSolve;
 
 import java.util.List;
 
 public class NetworkController {
-    public double calculateNetworkCapacityByMinValue(DoubleNetwork network) {
+    public static double calculateNetworkCost(DoubleNetwork network) {
+        double cost = 0;
+
+        for (NetworkElement hub : network.getSwitches()) {
+            cost += ((SwitchNetworkElement)hub).getPrice();
+        }
+
+        return cost;
+    }
+
+    public static double calculateNetworkCapacityByMinValue(DoubleNetwork network) {
         double networkCapacity = Double.MAX_VALUE;
         double currentCapacity;
 
@@ -24,7 +35,7 @@ public class NetworkController {
         return networkCapacity;
     }
 
-    private double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement<Double> user) {
+    private static double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement<Double> user) {
         int size = network.getNetworkElementsCount();
         double[][] networkMatrix = convertNetworkToArray(network, size);
         int userPosition = network.getNEPosition(user);
@@ -40,7 +51,7 @@ public class NetworkController {
         return LpSolveController.solve(solver);
     }
 
-    private void prerequisitesForCalculation(DoubleNetwork network, double[][] networkMatrix, LpSolve solver, int size) {
+    private static void prerequisitesForCalculation(DoubleNetwork network, double[][] networkMatrix, LpSolve solver, int size) {
         for (NetworkElement<Double> root : network.getRoots()) {
             LpSolveController.setUpperConstraint(networkMatrix, solver, network.getNEPosition(root), size);
         }
@@ -51,7 +62,7 @@ public class NetworkController {
         }
     }
 
-    private double[][] convertNetworkToArray(DoubleNetwork network, int neSize) {
+    private static double[][] convertNetworkToArray(DoubleNetwork network, int neSize) {
         List<NetworkElement<Double>> networkElements = network.getNetworkElements();
         double[][] networkArray = new double[neSize][neSize];
 

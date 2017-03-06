@@ -3,6 +3,8 @@
  */
 package core.algorithm.model;
 
+import core.algorithm.inventory.NetworkElement;
+import core.algorithm.inventory.networkelement.EmptyElement;
 import tools.CommonTool;
 
 import java.util.List;
@@ -15,34 +17,31 @@ public abstract class AbstractNetwork<TrafficType, NetworkElement> {
     protected List<NetworkElement> switches;
     protected List<NetworkElement> users;
 
-    public void addRoot(NetworkElement root) {
+    public void addRoot(NetworkElement root, int position) {
         roots.add(root);
-        networkElements.add(root);
+        networkElements.set(position, root);
     }
 
-    public void addUser(NetworkElement user) {
+    public void addUser(NetworkElement user, int position) {
         users.add(user);
-        networkElements.add(user);
+        networkElements.set(position, user);
     }
 
-    public void addSwitch(NetworkElement hub) {
+    public void addSwitch(NetworkElement hub, int position) {
         switches.add(hub);
-        networkElements.add(hub);
+        networkElements.set(position, hub);
     }
 
     public void removeRoot(NetworkElement root) {
         roots.remove(root);
-        networkElements.remove(root);
     }
 
     public void removeUser(NetworkElement user) {
         users.remove(user);
-        networkElements.remove(user);
     }
 
     public void removeSwitch(NetworkElement hub) {
         switches.remove(hub);
-        networkElements.remove(hub);
     }
 
     public int getNEPosition(NetworkElement networkElement) {
@@ -102,4 +101,10 @@ public abstract class AbstractNetwork<TrafficType, NetworkElement> {
     public List<NetworkElement> getUsers() {
         return users;
     }
+
+    public AbstractLink<TrafficType>[][] getLinksMatrix() {
+        return linksMatrix;
+    }
+
+    public abstract List<Integer> getEmptyPosition();
 }

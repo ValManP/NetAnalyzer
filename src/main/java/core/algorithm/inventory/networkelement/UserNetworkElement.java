@@ -1,9 +1,9 @@
 /**
  * Created by Valerii Pozdiaev on 2017.
  */
-package core.algorithm.model.networkelement;
+package core.algorithm.inventory.networkelement;
 
-import core.algorithm.model.NetworkElement;
+import core.algorithm.inventory.NetworkElement;
 
 public class UserNetworkElement<TrafficType> extends NetworkElement<TrafficType> {
     private TrafficType desiredLevel;

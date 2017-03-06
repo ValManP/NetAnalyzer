@@ -1,7 +1,7 @@
 /**
  * Created by Valerii Pozdiaev on 2017.
  */
-package core.algorithm.model;
+package core.algorithm.inventory;
 
 public class NetworkElement<TrafficType> {
     protected TrafficType capacity;
