@@ -4,8 +4,11 @@ install: true
 cache:
   directories:
   - $HOME/.m2
+env:
+  global:
+    - LD_LIBRARY_PATH = TRAVIS_BUILD_DIR
 script:
-  - mvn clean install
+  - mvn clean install -Djava.library.path=TRAVIS_BUILD_DIR
   - mvn cobertura:cobertura
   - mvn checkstyle:check
 after_success:
