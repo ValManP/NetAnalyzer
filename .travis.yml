@@ -4,6 +4,8 @@ install: true
 cache:
   directories:
   - $HOME/.m2
+env:
+  - LD_LIBRARY_PATH = TRAVIS_BUILD_DIR
 script:
   - mvn clean install
   - mvn cobertura:cobertura
