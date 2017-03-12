@@ -13,36 +13,41 @@ import core.algorithm.inventory.NetworkDescription;
 import core.algorithm.inventory.networkelement.SwitchNetworkElement;
 import core.algorithm.model.AbstractNetwork;
 import core.algorithm.model.DoubleNetwork;
-import org.jenetics.AnyChromosome;
-import org.jenetics.AnyGene;
-import org.jenetics.Chromosome;
-import org.jenetics.Phenotype;
+import org.jenetics.*;
 import org.jenetics.engine.Engine;
+import tools.CommonTool;
+
+import java.util.List;
 
 import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 import static org.jenetics.engine.limit.bySteadyFitness;
 
 public class GAController {
     public static Engine createEngine(NetworkDescription networkDescription, NetworkSupplier networkSupplier,
-                               NetworkValidator networkValidator, NetworkAlleleValidator networkAlleleValidator,
+                               NetworkValidator networkValidator, NetworkAlleleValidator networkAlleleValidator, List<Alterer> alterers,
                                int populationSize) {
         RandomWeightFitness fitnessFunction = new RandomWeightFitness(networkDescription);
 
-        return Engine
-                    .builder(
-                            fitnessFunction::eval,
+        Engine.Builder builder = Engine
+                .builder(
+                        fitnessFunction::eval,
                         new NetworkConfigurationFactory(networkDescription,
                                 networkSupplier,
                                 networkAlleleValidator,
                                 networkValidator))
-             .populationSize(populationSize)
-             .build();
+                .populationSize(populationSize);
+
+        for (Alterer alterer : alterers) {
+            builder = builder.alterers(alterer);
+        }
+
+        return builder.build();
     }
 
-    public static Phenotype<AnyGene<NetworkAllele>, Double> execute(Engine engine) {
+    public static Phenotype<AnyGene<NetworkAllele>, Double> execute(Engine engine, int generations) {
         return (Phenotype<AnyGene<NetworkAllele>, Double>)engine.stream()
                 .limit(bySteadyFitness(5))
-                .limit(10)
+                .limit(generations)
                 .collect(toBestPhenotype());
     }
 
@@ -50,8 +55,10 @@ public class GAController {
         DoubleNetwork resultNetwork = new DoubleNetwork((DoubleNetwork) networkDescription.getNetwork());
 
         for (int index = 0; index < chromosome.length(); index++) {
-            resultNetwork.addSwitch(networkDescription.getStorage().getElement(index),
-                    chromosome.getGene(index).getAllele().position);
+            if (chromosome.getGene(index).getAllele().isSet) {
+                resultNetwork.addSwitch(networkDescription.getStorage().getElement(index),
+                        chromosome.getGene(index).getAllele().position);
+            }
         }
 
         return resultNetwork;

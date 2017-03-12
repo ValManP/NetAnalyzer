@@ -15,9 +15,7 @@ import org.jenetics.internal.collection.ArrayISeq;
 import org.jenetics.util.Factory;
 import org.jenetics.util.ISeq;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class NetworkConfigurationFactory implements Factory<Genotype<AnyGene<NetworkAllele>>> {
@@ -45,20 +43,22 @@ public class NetworkConfigurationFactory implements Factory<Genotype<AnyGene<Net
 
     private void initializeChromosome(AnyChromosome<NetworkAllele> chromosome) {
         Random random = new Random();
-        List<Integer> positions = new ArrayList<>(networkDescription.getEmptyPosition().size());
+        int emptyPositionsSize = networkDescription.getEmptyPosition().size();
+        boolean[] positions = new boolean[emptyPositionsSize];
+        Arrays.fill(positions, false);
 
         int geneNumber, devicePosition, indexOfDevice = 0;
-        int deviceCount = random.nextInt(networkDescription.getEmptyPosition().size() - networkDescription.getMinDeviceCount() + 1)
+        int deviceCount = random.nextInt(emptyPositionsSize - networkDescription.getMinDeviceCount() + 1)
                 + networkDescription.getMinDeviceCount();
 
         while (indexOfDevice != deviceCount) {
             geneNumber = random.nextInt(chromosome.length());
-            devicePosition = random.nextInt(networkDescription.getEmptyPosition().size());
-            if (chromosome.getGene(geneNumber).getAllele().isSet()) {
+            devicePosition = random.nextInt(emptyPositionsSize);
+            if (!chromosome.getGene(geneNumber).getAllele().isSet()) {
 
-                if (positions.get(devicePosition) == 1) {
-                    for (int i = 0; i < networkDescription.getEmptyPosition().size(); i++) {
-                        if (positions.get(i) == 0) {
+                if (positions[devicePosition]) {
+                    for (int i = 0; i < emptyPositionsSize; i++) {
+                        if (!positions[i]) {
                             devicePosition = i;
                             break;
                         }
@@ -66,8 +66,8 @@ public class NetworkConfigurationFactory implements Factory<Genotype<AnyGene<Net
                 }
 
                 chromosome.getGene(geneNumber).getAllele().isSet = true;
-                chromosome.getGene(geneNumber).getAllele().position = devicePosition;
-                positions.set(devicePosition, 1);
+                chromosome.getGene(geneNumber).getAllele().position = networkDescription.getEmptyPosition().get(devicePosition);
+                positions[devicePosition] = true;
                 indexOfDevice++;
             }
         }

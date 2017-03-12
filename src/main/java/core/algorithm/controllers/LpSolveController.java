@@ -136,11 +136,13 @@ public class LpSolveController {
         try {
             solver.setMaxim();
             solver.printLp();
-            solver.solve();
-            return solver.getObjective();
+            if (solver.solve() == 0) {
+                return solver.getObjective();
+            }
+
         } catch (LpSolveException e) {
             //LOG.error("Error in lp_solve");
         }
-        return 0;
+        return Double.MAX_VALUE;
     }
 }

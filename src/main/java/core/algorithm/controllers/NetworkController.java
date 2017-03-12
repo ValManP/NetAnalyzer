@@ -32,7 +32,7 @@ public class NetworkController {
             }
         }
 
-        return networkCapacity;
+        return (networkCapacity == Double.MAX_VALUE) ? 0.0 : networkCapacity;
     }
 
     private static double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement<Double> user) {
@@ -41,10 +41,14 @@ public class NetworkController {
         int userPosition = network.getNEPosition(user);
 
         LpSolve solver = LpSolveController.getLpSolver(size * size);
-        prerequisitesForCalculation(network, networkMatrix, solver, size);
+        try {
+            prerequisitesForCalculation(network, networkMatrix, solver, size);
 
-        LpSolveController.setLowerConstraint(networkMatrix, solver, userPosition, size);
-        LpSolveController.setObjectiveFunction(networkMatrix, solver, userPosition, size);
+            LpSolveController.setLowerConstraint(networkMatrix, solver, userPosition, size);
+            LpSolveController.setObjectiveFunction(networkMatrix, solver, userPosition, size);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0.0;
+        }
         // TODO Check correctness
         // LpSolveController.setUniqueLowerConstraint(networkMatrix, solver, userPosition, size);
 
