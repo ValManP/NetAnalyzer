@@ -15,10 +15,13 @@ import core.algorithm.model.AbstractNetwork;
 import core.algorithm.model.DoubleNetwork;
 import org.jenetics.*;
 import org.jenetics.engine.Engine;
+import org.jenetics.engine.EvolutionResult;
 import tools.CommonTool;
 
+import java.util.Iterator;
 import java.util.List;
 
+import static org.jenetics.engine.EvolutionResult.toBestEvolutionResult;
 import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 import static org.jenetics.engine.limit.bySteadyFitness;
 
@@ -44,11 +47,27 @@ public class GAController {
         return builder.build();
     }
 
-    public static Phenotype<AnyGene<NetworkAllele>, Double> execute(Engine engine, int generations) {
+    public static Phenotype<AnyGene<NetworkAllele>, Double> execute(Engine engine, int generations, int bySteadyFitness) {
         return (Phenotype<AnyGene<NetworkAllele>, Double>)engine.stream()
-                .limit(bySteadyFitness(5))
+                .limit(bySteadyFitness(bySteadyFitness))
                 .limit(generations)
                 .collect(toBestPhenotype());
+    }
+
+    public static EvolutionResult<AnyGene<NetworkAllele>, Double> evolve(Engine engine, int generation) {
+        return (EvolutionResult<AnyGene<NetworkAllele>, Double>)engine
+                .stream()
+                .limit(generation)
+                .collect(toBestEvolutionResult());
+    }
+
+    public static EvolutionResult<AnyGene<NetworkAllele>, Double> iterate(Engine engine, int generation) {
+        EvolutionResult<AnyGene<NetworkAllele>, Double> result = null;
+        Iterator<EvolutionResult<AnyGene<NetworkAllele>, Double>> iterator = engine.iterator();
+        for (int i = 0; i < generation; i++) {
+            result = iterator.next();
+        }
+        return result;
     }
 
     public static DoubleNetwork applyConfiguration(NetworkDescription networkDescription, Chromosome<AnyGene<NetworkAllele>> chromosome) {

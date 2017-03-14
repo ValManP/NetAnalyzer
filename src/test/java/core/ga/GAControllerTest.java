@@ -20,6 +20,7 @@ import org.jenetics.Alterer;
 import org.jenetics.AnyGene;
 import org.jenetics.Phenotype;
 import org.jenetics.engine.Engine;
+import org.jenetics.engine.EvolutionResult;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -68,13 +69,40 @@ public class GAControllerTest {
     public void canExecuteEngine() {
         // Arrange
         Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
+        int bySteadyFitness = 5;
 
         // Act
-        Phenotype<AnyGene<NetworkAllele>, Double> phenotype = GAController.execute(engine, generations);
+        Phenotype<AnyGene<NetworkAllele>, Double> phenotype = GAController.execute(engine, generations, bySteadyFitness);
 
         System.out.println("Phenotype = " + phenotype.getGeneration() + " fitness = " + phenotype.getFitness());
         // Assert
         assertNotNull(phenotype);
+    }
+
+    @Test
+    public void canExecuteOneEvolutionStep() {
+        // Arrange
+        Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
+        int gen = 1;
+
+        // Act
+        EvolutionResult<AnyGene<NetworkAllele>, Double> result = GAController.evolve(engine, gen);
+
+        // Assert
+        assertEquals(gen, result.getGeneration());
+    }
+
+    @Test
+    public void canIterateEvolution() {
+        // Arrange
+        Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
+        int gen = 2;
+
+        // Act
+        EvolutionResult<AnyGene<NetworkAllele>, Double> result = GAController.iterate(engine, gen);
+
+        // Assert
+        assertEquals(gen, result.getGeneration());
     }
 
     public static Storage createStorage() {
