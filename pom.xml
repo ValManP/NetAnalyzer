@@ -74,7 +74,6 @@
 									<groupId>com.datumbox</groupId>
 									<artifactId>lpsolve</artifactId>
 									<version>5.5.2.0</version>
-									<classifier>win64</classifier>
 									<type>jar</type>
 									<overWrite>true</overWrite>
 									<outputDirectory> ${project.build.directory}/libs
