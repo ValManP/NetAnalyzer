@@ -3,26 +3,25 @@
  */
 package core.ga;
 
-import core.algorithm.controllers.GAController;
-import core.algorithm.controllers.NetworkController;
-import core.algorithm.ga.NetworkAllele;
-import core.algorithm.ga.operators.suppliers.NetworkSupplier;
-import core.algorithm.ga.operators.validators.NetworkAlleleValidator;
-import core.algorithm.ga.operators.validators.NetworkValidator;
-import core.algorithm.inventory.NetworkDescription;
-import core.algorithm.inventory.Storage;
-import core.algorithm.inventory.networkelement.RootNetworkElement;
-import core.algorithm.inventory.networkelement.SwitchNetworkElement;
-import core.algorithm.inventory.networkelement.UserNetworkElement;
-import core.algorithm.model.DoubleLink;
-import core.algorithm.model.DoubleNetwork;
+import core.controllers.GAController;
+import core.ga.operators.configuration.NetworkAllele;
+import core.ga.operators.configuration.suppliers.NetworkSupplier;
+import core.ga.operators.configuration.validators.NetworkAlleleValidator;
+import core.ga.operators.configuration.validators.NetworkValidator;
+import core.model.inventory.impl.storage.DoubleStorage;
+import core.model.network.NetworkDescription;
+import core.model.inventory.AbstractStorage;
+import core.model.inventory.impl.networkelement.RootNetworkElement;
+import core.model.inventory.impl.networkelement.SwitchNetworkElement;
+import core.model.inventory.impl.networkelement.UserNetworkElement;
+import core.model.network.impl.DoubleLink;
+import core.model.network.impl.DoubleNetwork;
 import org.jenetics.Alterer;
 import org.jenetics.AnyGene;
 import org.jenetics.Phenotype;
 import org.jenetics.engine.Engine;
 import org.jenetics.engine.EvolutionResult;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class GAControllerTest {
     private int generations = 100;
     private int minDeviceCount = 2;
     private DoubleNetwork network;
-    private Storage storage;
+    private AbstractStorage storage;
     private NetworkDescription networkDescription;
     private NetworkSupplier networkSupplier;
     private NetworkValidator networkValidator;
@@ -105,8 +104,8 @@ public class GAControllerTest {
         assertEquals(gen, result.getGeneration());
     }
 
-    public static Storage createStorage() {
-        Storage storage = new Storage();
+    public static AbstractStorage createStorage() {
+        AbstractStorage storage = new DoubleStorage();
 
         storage.addElement(new SwitchNetworkElement<>(10.0, 10));
         storage.addElement(new SwitchNetworkElement<>(30.0, 15.0));

@@ -1,0 +1,37 @@
+/**
+ * Created by Valerii Pozdiaev on 2017.
+ */
+package core.ga.operators.fitness.impl;
+
+import core.controllers.GAController;
+import core.controllers.NetworkController;
+import core.ga.operators.configuration.NetworkAllele;
+import core.ga.operators.fitness.GAFitness;
+import core.model.network.NetworkDescription;
+import core.model.network.impl.DoubleNetwork;
+import org.jenetics.AnyGene;
+import org.jenetics.Genotype;
+
+import java.util.Random;
+
+public class RandomWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Double> {
+    private double weight1;
+    private double weight2;
+
+    public RandomWeightFitness(NetworkDescription description) {
+        networkDescription = description;
+        Random random = new Random();
+        weight1 = random.nextDouble();
+        weight2 = 1 - weight1;
+    }
+
+    @Override
+    public Double eval(Genotype<AnyGene<NetworkAllele>> gt) {
+        DoubleNetwork network = GAController.applyConfiguration(networkDescription, gt.getChromosome());
+
+        double averageCapacity = NetworkController.calculateNetworkCapacityByMinValue(network);
+        double cost = NetworkController.calculateNetworkCost(network);
+
+        return weight1 * averageCapacity - weight2 * cost;
+    }
+}

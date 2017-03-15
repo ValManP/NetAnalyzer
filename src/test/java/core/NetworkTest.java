@@ -3,11 +3,11 @@
  */
 package core;
 
-import core.algorithm.model.DoubleLink;
-import core.algorithm.model.DoubleNetwork;
-import core.algorithm.inventory.networkelement.RootNetworkElement;
-import core.algorithm.inventory.networkelement.SwitchNetworkElement;
-import core.algorithm.inventory.networkelement.UserNetworkElement;
+import core.model.network.impl.DoubleLink;
+import core.model.network.impl.DoubleNetwork;
+import core.model.inventory.impl.networkelement.RootNetworkElement;
+import core.model.inventory.impl.networkelement.SwitchNetworkElement;
+import core.model.inventory.impl.networkelement.UserNetworkElement;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
