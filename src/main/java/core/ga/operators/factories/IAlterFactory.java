@@ -3,7 +3,11 @@
  */
 package core.ga.operators.factories;
 
+import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.IAltererType;
+import core.ga.operators.factories.alterer.types.MutatorTypes;
+import core.ga.operators.factories.impl.CrossoverFactory;
+import core.ga.operators.factories.impl.MutatorFactory;
 import org.jenetics.AbstractAlterer;
 import org.jenetics.Gene;
 

@@ -4,8 +4,6 @@
 package core.ga.operators.factories.impl;
 
 import core.ga.operators.factories.ISelectorFactory;
-import core.ga.operators.factories.alterer.types.CrossoverTypes;
-import core.ga.operators.factories.alterer.types.IAltererType;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
 import org.jenetics.*;
 

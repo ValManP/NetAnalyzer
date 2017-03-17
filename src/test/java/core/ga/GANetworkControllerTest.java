@@ -3,7 +3,7 @@
  */
 package core.ga;
 
-import core.controllers.GAController;
+import core.ga.controllers.GANetworkController;
 import core.ga.operators.configuration.NetworkAllele;
 import core.ga.operators.configuration.suppliers.NetworkSupplier;
 import core.ga.operators.configuration.validators.NetworkAlleleValidator;
@@ -30,7 +30,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class GAControllerTest {
+public class GANetworkControllerTest {
     private int networkSize = 6;
     private int populationSize = 50;
     private int generations = 100;
@@ -56,36 +56,22 @@ public class GAControllerTest {
     }
 
     @Test
-    public void canCreateEngine() {
+    public void canCompileBuilder() {
         // Act
-        Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
+        Engine.Builder builder = GANetworkController.compileBuilder(network, storage);
 
         // Assert
-        assertNotNull(engine);
+        assertNotNull(builder);
     }
 
     @Test
-    public void canExecuteEngine() {
+    public void canApplyConfiguration() {
         // Arrange
-        Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
-        int bySteadyFitness = 5;
-
-        // Act
-        Phenotype<AnyGene<NetworkAllele>, Double> phenotype = GAController.execute(engine, generations, bySteadyFitness);
-
-        System.out.println("Phenotype = " + phenotype.getGeneration() + " fitness = " + phenotype.getFitness());
-        // Assert
-        assertNotNull(phenotype);
-    }
-
-    @Test
-    public void canExecuteOneEvolutionStep() {
-        // Arrange
-        Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
+        Engine engine = GANetworkController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
         int gen = 1;
 
         // Act
-        EvolutionResult<AnyGene<NetworkAllele>, Double> result = GAController.evolve(engine, gen);
+        EvolutionResult<AnyGene<NetworkAllele>, Double> result = GANetworkController.evolve(engine, gen);
 
         // Assert
         assertEquals(gen, result.getGeneration());
@@ -94,11 +80,11 @@ public class GAControllerTest {
     @Test
     public void canIterateEvolution() {
         // Arrange
-        Engine engine = GAController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
+        Engine engine = GANetworkController.createEngine(networkDescription, networkSupplier, networkValidator, networkAlleleValidator, alteres, populationSize);
         int gen = 2;
 
         // Act
-        EvolutionResult<AnyGene<NetworkAllele>, Double> result = GAController.iterate(engine, gen);
+        EvolutionResult<AnyGene<NetworkAllele>, Double> result = GANetworkController.iterate(engine, gen);
 
         // Assert
         assertEquals(gen, result.getGeneration());

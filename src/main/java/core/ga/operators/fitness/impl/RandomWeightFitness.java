@@ -3,8 +3,8 @@
  */
 package core.ga.operators.fitness.impl;
 
-import core.controllers.GAController;
-import core.controllers.NetworkController;
+import core.ga.controllers.GANetworkController;
+import core.model.controllers.NetworkController;
 import core.ga.operators.configuration.NetworkAllele;
 import core.ga.operators.fitness.GAFitness;
 import core.model.network.NetworkDescription;
@@ -27,7 +27,7 @@ public class RandomWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Doubl
 
     @Override
     public Double eval(Genotype<AnyGene<NetworkAllele>> gt) {
-        DoubleNetwork network = GAController.applyConfiguration(networkDescription, gt.getChromosome());
+        DoubleNetwork network = GANetworkController.applyConfiguration(networkDescription, gt.getChromosome());
 
         double averageCapacity = NetworkController.calculateNetworkCapacityByMinValue(network);
         double cost = NetworkController.calculateNetworkCost(network);

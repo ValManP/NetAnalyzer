@@ -3,7 +3,7 @@
  */
 package core;
 
-import core.controllers.NetworkController;
+import core.model.controllers.NetworkController;
 import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
 import core.model.inventory.impl.networkelement.RootNetworkElement;

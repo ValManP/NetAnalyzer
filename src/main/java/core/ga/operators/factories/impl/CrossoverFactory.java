@@ -6,7 +6,6 @@ package core.ga.operators.factories.impl;
 import core.ga.operators.factories.IAlterFactory;
 import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.IAltererType;
-import core.ga.operators.factories.alterer.types.MutatorTypes;
 import org.jenetics.*;
 
 public class CrossoverFactory implements IAlterFactory {

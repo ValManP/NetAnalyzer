@@ -1,7 +1,7 @@
 /**
  * Created by Valerii Pozdiaev on 2017.
  */
-package core.controllers;
+package core.model.controllers;
 
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.network.impl.DoubleNetwork;
