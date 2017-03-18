@@ -9,7 +9,7 @@ script:
   - mvn cobertura:cobertura
   - mvn checkstyle:check
 before_install:
-  - LD_LIBRARY_PATH= $HOME/libs:$LD_LIBRARY_PATH
+  - export LD_LIBRARY_PATH= $HOME/libs:$LD_LIBRARY_PATH
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:
