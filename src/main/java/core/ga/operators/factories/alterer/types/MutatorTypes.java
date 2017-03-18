@@ -5,7 +5,6 @@ package core.ga.operators.factories.alterer.types;
  */
 public enum MutatorTypes implements IAltererType {
     MUTATOR,
-    GAUSSIAN_MUTATOR,
     SWAP_MUTATOR;
 
     private double probability;
@@ -20,7 +19,8 @@ public enum MutatorTypes implements IAltererType {
     }
 
     @Override
-    public void setProbability(double probability) {
+    public IAltererType withProbability(double probability) {
         this.probability = probability;
+        return this;
     }
 }

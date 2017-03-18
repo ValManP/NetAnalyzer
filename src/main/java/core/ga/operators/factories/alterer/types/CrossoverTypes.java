@@ -21,7 +21,8 @@ public enum CrossoverTypes implements IAltererType {
     }
 
     @Override
-    public void setProbability(double probability) {
+    public IAltererType withProbability(double probability) {
         this.probability = probability;
+        return this;
     }
 }

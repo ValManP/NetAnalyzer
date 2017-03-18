@@ -14,11 +14,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-       <artifactId>junit-jupiter-api</artifactId>
-       <version>RELEASE</version>
-     </dependency>
      <dependency>
        <groupId>junit</groupId>
        <artifactId>junit</artifactId>
@@ -121,6 +116,7 @@
 							<value>target/lib/</value>
 						</property>
 					</systemProperties>
+					<argLine>-Djava.library.path=${project.build.directory}/libs -Djni.library.path=${project.build.directory}/libs</argLine>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -20,8 +20,9 @@ public enum SelectorTypes {
         this.selectionVariable = SELECTION_VARIABLE;
     }
 
-    public void setSelectionVariable(double selectionVariable) {
+    public SelectorTypes withSelectionVariable(double selectionVariable) {
         this.selectionVariable = selectionVariable;
+        return this;
     }
 
     public double getSelectionVariable() {

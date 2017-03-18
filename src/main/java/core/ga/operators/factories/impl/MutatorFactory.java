@@ -18,8 +18,6 @@ public class MutatorFactory implements IAlterFactory {
             result = (IAltererType.probability == probability) ? new Mutator() : new Mutator(probability);
         } else if (altererType == MutatorTypes.SWAP_MUTATOR) {
             result = (IAltererType.probability == probability) ? new SwapMutator() : new SwapMutator(probability);
-        } else if (altererType == MutatorTypes.GAUSSIAN_MUTATOR) {
-            result = (IAltererType.probability == probability) ? new GaussianMutator() : new GaussianMutator(probability);
         }
 
         return result;

@@ -41,8 +41,8 @@ public class Evolution {
         return this;
     }
 
-    public Evolution alterer(IAltererType type){
-        builder.alterers(getAlterer(type));
+    public Evolution alterer(IAltererType crossover, IAltererType mutator){
+        builder.alterers(getAlterer(crossover), getAlterer(mutator));
         return this;
     }
 
@@ -72,6 +72,22 @@ public class Evolution {
 
     public EvolutionResult evolve(int generations) {
         return (EvolutionResult<AnyGene<NetworkAllele>, Double>) GANetworkController.evolve(engine, generations, toBestEvolutionResult());
+    }
+
+    public AbstractNetwork getNetwork() {
+        return network;
+    }
+
+    public AbstractStorage getStorage() {
+        return storage;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public Engine.Builder getBuilder() {
+        return builder;
     }
 
     private Alterer getAlterer(IAltererType type) {

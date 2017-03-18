@@ -9,5 +9,5 @@ public interface IAltererType {
     double probability = Alterer.DEFAULT_ALTER_PROBABILITY;
 
     double getProbability();
-    void setProbability(double probability);
+    IAltererType withProbability(double probability);
 }
