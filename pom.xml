@@ -113,7 +113,7 @@
 					<systemProperties>
 						<property>
 							<name>java.library.path</name>
-							<value>target/lib/</value>
+							<value>${project.build.directory}/libs</value>
 						</property>
 					</systemProperties>
 					<argLine>-Djava.library.path=${project.build.directory}/libs -Djni.library.path=${project.build.directory}/libs</argLine>
