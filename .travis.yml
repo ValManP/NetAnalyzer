@@ -8,8 +8,8 @@ script:
   - mvn clean install
   - mvn cobertura:cobertura
   - mvn checkstyle:check
-before_install:
-  - "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:target/libs"
+env:
+  - LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:
