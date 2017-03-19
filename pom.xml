@@ -116,7 +116,6 @@
 							<value>target/lib/</value>
 						</property>
 					</systemProperties>
-					<argLine>-Djava.library.path=${project.build.directory}/libs -Djni.library.path=${project.build.directory}/libs</argLine>
 				</configuration>
 			</plugin>
 		</plugins>
