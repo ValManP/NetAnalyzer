@@ -30,7 +30,8 @@ import static org.jenetics.engine.limit.bySteadyFitness;
 public class GANetworkController {
     public static Engine.Builder compileBuilder(AbstractNetwork network, AbstractStorage storage) {
         NetworkDescription networkDescription = new NetworkDescription(network, storage);
-        networkDescription.setMinDeviceCount(6);
+        int emptyPosCount = network.getEmptyPosition().size();
+        networkDescription.setMinDeviceCount(emptyPosCount - emptyPosCount / 6);
         RandomWeightFitness fitnessFunction = new RandomWeightFitness(networkDescription);
 
         return Engine.builder(fitnessFunction::eval, createNetworkConfigurationFactory(networkDescription));

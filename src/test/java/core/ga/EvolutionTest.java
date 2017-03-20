@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class EvolutionTest {
-    private int networkSize = 21;
+    private int networkSize = 6;
     private int initialPopulation = 50;
     private AbstractNetwork network;
     private AbstractStorage storage;
