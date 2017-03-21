@@ -121,7 +121,7 @@
                   <systemProperties> 
                   <property> 
                            <name>java.library.path</name> 
-                           <value>/home/travis/build/ValManP/NetAnalyzer/target/classes/.libs</value> 
+                           <value>${basedir}/libs</value> 
                   </property> 
                   </systemProperties> 
            </configuration>
