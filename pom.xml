@@ -118,10 +118,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-             <systemPropertyVariables>
-               <propertyName>java.library.path</propertyName>
-               <buildDirectory>$TRAVIS_BUILD_DIR/target/classes</buildDirectory>
-             </systemPropertyVariables>
+                  <forkMode>once</forkMode> 
+                    <workingDirectory>target</workingDirectory> 
+                    <argLine>-Djava.library.path=classes</argLine> 
            </configuration>
             </plugin>
         </plugins>
