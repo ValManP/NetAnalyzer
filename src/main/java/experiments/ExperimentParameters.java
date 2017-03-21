@@ -22,7 +22,7 @@ public class ExperimentParameters {
     private int generationLimit;
 
     public ExperimentParameters(AbstractNetwork network, AbstractStorage storage, double experimentStep,
-                                int timeOfExecution, CrossoverTypes crossover, MutatorTypes mutator,
+                                int timeOfExecution, IAltererType crossover, IAltererType mutator,
                                 SelectorTypes selector, int initialPopulation, int generationLimit) {
         this.network = network;
         this.storage = storage;
