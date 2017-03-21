@@ -8,8 +8,6 @@ script:
   - mvn clean install
   - mvn cobertura:cobertura
   - mvn checkstyle:check
-env:
-  - LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/target/classes:$LD_LIBRARY_PATH
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:

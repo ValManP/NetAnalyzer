@@ -117,13 +117,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                    <systemProperties>
-                        <property>
-                            <name>java.library.path</name>
-                            <value>${project.build.directory}/libs</value>
-                        </property>
-                    </systemProperties>
-                </configuration>
+                  <systemProperties> 
+                  <property> 
+                           <name>java.library.path</name> 
+                           <value>${basedir}/libs</value> 
+                  </property> 
+                  </systemProperties> 
+           </configuration>
             </plugin>
         </plugins>
     </build>
