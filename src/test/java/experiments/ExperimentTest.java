@@ -7,6 +7,7 @@ import core.model.inventory.AbstractStorage;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
+import core.model.inventory.impl.storage.Device;
 import core.model.inventory.impl.storage.DoubleStorage;
 import core.model.network.AbstractNetwork;
 import core.model.network.impl.DoubleLink;
@@ -26,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by Поздяев on 22.03.2017.
  */
 public class ExperimentTest {
-    private int storageSize = 30;
+    private int storageSize = 20;
     private int networkSize = 21;
     private double minCapacity = 60, maxCapacity = 140, minPrice = 50, maxPrice = 120;
     private AbstractNetwork network;
@@ -61,7 +62,7 @@ public class ExperimentTest {
         Random random = new Random();
 
         for (int i = 0; i < storageSize; ++i) {
-            storage.addElement(new SwitchNetworkElement<>((maxCapacity - minCapacity) * random.nextDouble() + minCapacity,
+            storage.addElement(new Device("device#" + i, (maxCapacity - minCapacity) * random.nextDouble() + minCapacity,
                     (maxPrice - minPrice) * random.nextDouble() + minPrice));
         }
 
@@ -70,19 +71,19 @@ public class ExperimentTest {
 
     private DoubleNetwork createNetwork(int size) {
         DoubleNetwork network = new DoubleNetwork(size);
-        network.addRoot(new RootNetworkElement<>(130.0), 0);
-        network.addRoot(new RootNetworkElement<>(120.0), 1);
-        network.addRoot(new RootNetworkElement<>(150.0), 2);
+        network.addRoot(new RootNetworkElement(130.0), 0);
+        network.addRoot(new RootNetworkElement(120.0), 1);
+        network.addRoot(new RootNetworkElement(150.0), 2);
 
-        network.addUser(new UserNetworkElement<>(40.0, 60.0), 3);
-        network.addUser(new UserNetworkElement<>(30.0, 50.0), 4);
-        network.addUser(new UserNetworkElement<>(40.0, 60.0), 5);
-        network.addUser(new UserNetworkElement<>(30.0, 50.0), 6);
-        network.addUser(new UserNetworkElement<>(40.0, 60.0), 7);
-        network.addUser(new UserNetworkElement<>(30.0, 50.0), 8);
-        network.addUser(new UserNetworkElement<>(40.0, 60.0), 9);
-        network.addUser(new UserNetworkElement<>(30.0, 50.0), 10);
-        network.addUser(new UserNetworkElement<>(30.0, 50.0), 11);
+        network.addUser(new UserNetworkElement(40.0, 60.0), 3);
+        network.addUser(new UserNetworkElement(30.0, 50.0), 4);
+        network.addUser(new UserNetworkElement(40.0, 60.0), 5);
+        network.addUser(new UserNetworkElement(30.0, 50.0), 6);
+        network.addUser(new UserNetworkElement(40.0, 60.0), 7);
+        network.addUser(new UserNetworkElement(30.0, 50.0), 8);
+        network.addUser(new UserNetworkElement(40.0, 60.0), 9);
+        network.addUser(new UserNetworkElement(30.0, 50.0), 10);
+        network.addUser(new UserNetworkElement(30.0, 50.0), 11);
 
 
         network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0), 0, 12);

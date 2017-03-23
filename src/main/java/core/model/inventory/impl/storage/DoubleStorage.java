@@ -8,12 +8,12 @@ import core.model.inventory.NetworkElement;
 
 import java.util.List;
 
-public class DoubleStorage extends AbstractStorage<NetworkElement<Double>> {
+public class DoubleStorage extends AbstractStorage<Device> {
     public DoubleStorage() {
         super();
     }
 
-    public DoubleStorage(List<NetworkElement<Double>> elements) {
+    public DoubleStorage(List<Device> elements) {
         super(elements);
     }
 }

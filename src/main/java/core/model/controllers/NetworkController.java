@@ -25,7 +25,7 @@ public class NetworkController {
         double networkCapacity = Double.MAX_VALUE;
         double currentCapacity;
 
-        for (NetworkElement<Double> user : network.getUsers()) {
+        for (NetworkElement user : network.getUsers()) {
             currentCapacity = calculateNetworkCapacityForUser(network, user);
             if (currentCapacity < networkCapacity) {
                 networkCapacity = currentCapacity;
@@ -35,7 +35,7 @@ public class NetworkController {
         return (networkCapacity == Double.MAX_VALUE) ? 0.0 : networkCapacity;
     }
 
-    private static double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement<Double> user) {
+    private static double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement user) {
         int size = network.getNetworkElementsCount();
         double[][] networkMatrix = convertNetworkToArray(network, size);
         int userPosition = network.getNEPosition(user);
@@ -56,10 +56,10 @@ public class NetworkController {
     }
 
     private static void prerequisitesForCalculation(DoubleNetwork network, double[][] networkMatrix, LpSolve solver, int size) {
-        for (NetworkElement<Double> root : network.getRoots()) {
+        for (NetworkElement root : network.getRoots()) {
             LpSolveController.setUpperConstraint(networkMatrix, solver, network.getNEPosition(root), size);
         }
-        for (NetworkElement<Double> hub : network.getSwitches()) {
+        for (NetworkElement hub : network.getSwitches()) {
             int hubPosition = network.getNEPosition(hub);
             LpSolveController.setUpperConstraint(networkMatrix, solver, hubPosition, size);
             LpSolveController.setEqualConstraint(networkMatrix, solver, hubPosition, size);
@@ -67,7 +67,7 @@ public class NetworkController {
     }
 
     private static double[][] convertNetworkToArray(DoubleNetwork network, int neSize) {
-        List<NetworkElement<Double>> networkElements = network.getNetworkElements();
+        List<NetworkElement> networkElements = network.getNetworkElements();
         double[][] networkArray = new double[neSize][neSize];
 
         for (int row = 0; row < neSize; row++) {

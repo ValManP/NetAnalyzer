@@ -21,12 +21,12 @@ public class NetworkControllerTest {
     @Before
     public void setup() {
         network = new DoubleNetwork(size);
-        network.addRoot(new RootNetworkElement<>(100.0), 0);
-        network.addSwitch(new SwitchNetworkElement<>(40.0, 10.0), 1);
-        network.addSwitch(new SwitchNetworkElement<>(30.0, 10.0), 2);
-        network.addSwitch(new SwitchNetworkElement<>(30.0, 10.0), 3);
-        network.addUser(new UserNetworkElement<>(40.0, 60.0), 4);
-        network.addUser(new UserNetworkElement<>(30.0, 50.0), 5);
+        network.addRoot(new RootNetworkElement(100.0), 0);
+        network.addSwitch(new SwitchNetworkElement("device#1", 40.0, 10.0), 1);
+        network.addSwitch(new SwitchNetworkElement("device#2", 30.0, 10.0), 2);
+        network.addSwitch(new SwitchNetworkElement("device#3", 30.0, 10.0), 3);
+        network.addUser(new UserNetworkElement(40.0, 60.0), 4);
+        network.addUser(new UserNetworkElement(30.0, 50.0), 5);
 
         network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0), 0, 1);
         network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0), 0, 2);
@@ -40,7 +40,7 @@ public class NetworkControllerTest {
     @Test
     public void canCalculateCapacity() {
         // Act
-        double expectedValue = 30.0;
+        double expectedValue = 60.0;
         double actualValue = NetworkController.calculateNetworkCapacityByMinValue(network);
 
         // Assert

@@ -5,8 +5,8 @@ package core.model.inventory.impl.networkelement;
 
 import core.model.inventory.NetworkElement;
 
-public class RootNetworkElement<TrafficType> extends NetworkElement<TrafficType> {
-    public RootNetworkElement(TrafficType capacity) {
+public class RootNetworkElement extends NetworkElement {
+    public RootNetworkElement(double capacity) {
         super(capacity);
     }
 }

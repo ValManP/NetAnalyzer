@@ -3,13 +3,11 @@
  */
 package core.model.inventory;
 
-import core.model.inventory.NetworkElement;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class AbstractStorage<N extends NetworkElement<? extends Number>> {
+public abstract class AbstractStorage<N> {
     protected List<N> elements;
 
     public AbstractStorage() {

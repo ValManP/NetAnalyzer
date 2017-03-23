@@ -12,6 +12,7 @@ import core.ga.operators.configuration.suppliers.NetworkSupplier;
 import core.ga.operators.configuration.validators.NetworkAlleleValidator;
 import core.ga.operators.configuration.validators.NetworkValidator;
 import core.model.inventory.AbstractStorage;
+import core.model.inventory.impl.storage.Device;
 import core.model.network.AbstractNetwork;
 import core.model.network.NetworkDescription;
 import core.model.network.impl.DoubleNetwork;
@@ -58,7 +59,7 @@ public class GANetworkController {
 
         for (int index = 0; index < chromosome.length(); index++) {
             if (chromosome.getGene(index).getAllele().isSet) {
-                resultNetwork.addSwitch(networkDescription.getStorage().getElement(index),
+                resultNetwork.addDeviceToSwitch((Device) networkDescription.getStorage().getElement(index),
                         chromosome.getGene(index).getAllele().position);
             }
         }

@@ -31,9 +31,9 @@ public class NetworkTest {
         DoubleNetwork network = new DoubleNetwork(size);
 
         // Act
-        network.addRoot(new RootNetworkElement<>(100.0), 0);
-        network.addSwitch(new SwitchNetworkElement<>(100.0, 10.0), 2);
-        network.addUser(new UserNetworkElement<>(100.0, 20.0), 4);
+        network.addRoot(new RootNetworkElement(100.0), 0);
+        network.addSwitch(new SwitchNetworkElement("device#1", 100.0, 10.0), 2);
+        network.addUser(new UserNetworkElement(100.0, 20.0), 4);
 
         // Assert
         int expectedCount = 6;
@@ -47,10 +47,10 @@ public class NetworkTest {
         DoubleNetwork network = new DoubleNetwork(size);
 
         // Act
-        SwitchNetworkElement<Double> hub = new SwitchNetworkElement<>(100.0, 10.0);
-        network.addRoot(new RootNetworkElement<>(100.0), 0);
+        SwitchNetworkElement hub = new SwitchNetworkElement("device#1", 100.0, 10.0);
+        network.addRoot(new RootNetworkElement(100.0), 0);
         network.addSwitch(hub, 1);
-        network.addUser(new UserNetworkElement<>(100.0, 20.0), 4);
+        network.addUser(new UserNetworkElement(100.0, 20.0), 4);
 
         // Assert
         int expectedPosition = 1;
@@ -62,9 +62,9 @@ public class NetworkTest {
         // Arrange
         int size = 6;
         DoubleNetwork network = new DoubleNetwork(size);
-        SwitchNetworkElement<Double> hub = new SwitchNetworkElement<>(100.0, 10.0);
-        RootNetworkElement<Double> root = new RootNetworkElement<>(100.0);
-        UserNetworkElement<Double> user = new UserNetworkElement<>(100.0, 20.0);
+        SwitchNetworkElement hub = new SwitchNetworkElement("device#1", 100.0, 10.0);
+        RootNetworkElement root = new RootNetworkElement(100.0);
+        UserNetworkElement user = new UserNetworkElement(100.0, 20.0);
         network.addRoot(root, 0);
         network.addSwitch(hub, 2);
         network.addUser(user, 4);
@@ -86,9 +86,9 @@ public class NetworkTest {
         // Arrange
         int size = 6;
         DoubleNetwork network = new DoubleNetwork(size);
-        network.addRoot(new RootNetworkElement<>(100.0), 0);
-        network.addSwitch(new SwitchNetworkElement<>(100.0, 10.0), 2);
-        network.addUser(new UserNetworkElement<>(100.0, 20.0), 4);
+        network.addRoot(new RootNetworkElement(100.0), 0);
+        network.addSwitch(new SwitchNetworkElement("device#1", 100.0, 10.0), 2);
+        network.addUser(new UserNetworkElement(100.0, 20.0), 4);
 
         // Act&Assert
         int expectedSize = 1;
@@ -102,8 +102,8 @@ public class NetworkTest {
         // Arrange
         int size = 6;
         DoubleNetwork network = new DoubleNetwork(size);
-        network.addRoot(new RootNetworkElement<>(100.0), 0);
-        network.addSwitch(new SwitchNetworkElement<>(100.0, 10.0), 1);
+        network.addRoot(new RootNetworkElement(100.0), 0);
+        network.addSwitch(new SwitchNetworkElement("device#1", 100.0, 10.0), 1);
 
         // Act
         network.addLink(new DoubleLink(true, 100.0, 20.0, 32.0), 0, 1);
@@ -117,8 +117,8 @@ public class NetworkTest {
         // Arrange
         int size = 6;
         DoubleNetwork network = new DoubleNetwork(size);
-        network.addRoot(new RootNetworkElement<>(100.0), 0);
-        network.addSwitch(new SwitchNetworkElement<>(100.0, 10.0), 1);
+        network.addRoot(new RootNetworkElement(100.0), 0);
+        network.addSwitch(new SwitchNetworkElement("device#1", 100.0, 10.0), 1);
         network.addLink(new DoubleLink(true, 100.0, 20.0, 32.0), 0, 1);
 
         // Act

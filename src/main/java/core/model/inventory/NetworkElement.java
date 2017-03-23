@@ -3,21 +3,21 @@
  */
 package core.model.inventory;
 
-public abstract class NetworkElement<TrafficType> {
-    protected TrafficType capacity;
+public abstract class NetworkElement {
+    public double capacity;
 
     public NetworkElement() {
     }
 
-    public NetworkElement(TrafficType capacity) {
+    public NetworkElement(double capacity) {
         this.capacity = capacity;
     }
 
-    public TrafficType getCapacity() {
+    public double getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(TrafficType capacity) {
+    public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
 }
