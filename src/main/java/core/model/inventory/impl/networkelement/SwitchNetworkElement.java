@@ -20,7 +20,6 @@ public class SwitchNetworkElement extends NetworkElement {
     }
 
     public SwitchNetworkElement(String name, double capacity, double price) {
-        super(capacity);
         devices = new ArrayList<>();
         addDevice(new Device(name, capacity, price));
     }

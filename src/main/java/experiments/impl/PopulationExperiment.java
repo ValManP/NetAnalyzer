@@ -5,7 +5,6 @@ import experiments.AbstractExperiment;
 import experiments.ExperimentParameters;
 import org.jenetics.Phenotype;
 
-@SuppressWarnings("unchecked")
 public class PopulationExperiment extends AbstractExperiment {
     public PopulationExperiment(ExperimentParameters parameters, String fileName) {
         super(parameters, fileName);

@@ -8,6 +8,7 @@ import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.IAltererType;
 import core.ga.operators.factories.alterer.types.MutatorTypes;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
+import core.ga.operators.fitness.FitnessTypes;
 import core.model.inventory.AbstractStorage;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
@@ -41,7 +42,7 @@ public class EvolutionTest {
         AbstractStorage storage = createStorage();
 
         // Act
-        Evolution evolution = new Evolution(network, storage);
+        Evolution evolution = new Evolution(network, storage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75));
 
         // Assert
         assertNotNull(evolution);
@@ -52,7 +53,7 @@ public class EvolutionTest {
         // Arrange
         AbstractNetwork network = createNetwork(networkSize);
         AbstractStorage storage = createStorage();
-        Evolution evolution = new Evolution(network, storage);
+        Evolution evolution = new Evolution(network, storage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75));
 
         // Act
         evolution.builder();
@@ -66,7 +67,7 @@ public class EvolutionTest {
         // Arrange
         AbstractNetwork network = createNetwork(networkSize);
         AbstractStorage storage = createStorage();
-        Evolution evolution = (new Evolution(network, storage)).builder();
+        Evolution evolution = (new Evolution(network, storage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75))).builder();
         int population = 50;
 
         // Act
@@ -81,7 +82,7 @@ public class EvolutionTest {
         // Arrange
         AbstractNetwork network = createNetwork(networkSize);
         AbstractStorage storage = createStorage();
-        Evolution evolution = (new Evolution(network, storage)).builder();
+        Evolution evolution = (new Evolution(network, storage,FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75))).builder();
 
         // Act
         IAltererType crossover = CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.4);
@@ -97,7 +98,7 @@ public class EvolutionTest {
         // Arrange
         AbstractNetwork network = createNetwork(networkSize);
         AbstractStorage storage = createStorage();
-        Evolution evolution = (new Evolution(network, storage)).builder();
+        Evolution evolution = (new Evolution(network, storage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75))).builder();
 
         // Act
         SelectorTypes selector = SelectorTypes.MONTE_CARLO_SELECTOR;
@@ -112,11 +113,11 @@ public class EvolutionTest {
     public void setUp() throws Exception {
         network = createNetwork(networkSize);
         storage = createStorage();
-        evolution = (new Evolution(network, storage)).builder()
-                        .alterer(CrossoverTypes.UNIFORM_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.1))
-                        .selector(SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0))
-                        .initialPopulation(initialPopulation)
-                        .buildEngine();
+        evolution = (new Evolution(network, storage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75))).builder()
+                .alterer(CrossoverTypes.UNIFORM_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.1))
+                .selector(SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0))
+                .initialPopulation(initialPopulation)
+                .buildEngine();
     }
 
     @Test
@@ -140,7 +141,7 @@ public class EvolutionTest {
         EvolutionResult result = evolution.evolve(generations);
 
         // Assert
-        assertTrue(generations > result.getGeneration());
+        assertTrue(generations >= result.getGeneration());
     }
 
     @Test
@@ -152,7 +153,7 @@ public class EvolutionTest {
         Phenotype result = evolution.evolveToBestPhenotype(generations);
 
         // Assert
-        assertTrue(generations > result.getGeneration());
+        assertTrue(generations >= result.getGeneration());
     }
 
     private static AbstractStorage createStorage() {

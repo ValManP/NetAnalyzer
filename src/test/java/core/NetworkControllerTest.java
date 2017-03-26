@@ -4,6 +4,7 @@
 package core;
 
 import core.model.controllers.NetworkController;
+import core.model.inventory.impl.storage.Device;
 import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
@@ -40,7 +41,7 @@ public class NetworkControllerTest {
     @Test
     public void canCalculateCapacity() {
         // Act
-        double expectedValue = 60.0;
+        double expectedValue = 30.0;
         double actualValue = NetworkController.calculateNetworkCapacityByMinValue(network);
 
         // Assert
@@ -52,6 +53,19 @@ public class NetworkControllerTest {
         // Act
         double expectedValue = 30.0;
         double actualValue = NetworkController.calculateNetworkCost(network);
+
+        // Assert
+        assertEquals(expectedValue, actualValue, 0.01);
+    }
+
+    @Test
+    public void canCalculateCapacityWithMultiDevice() {
+        // Arrange
+        network.addDeviceToSwitch(new Device("Cisco#1", 40, 20), 3);
+
+        // Act
+        double expectedValue = 70.0;
+        double actualValue = NetworkController.calculateNetworkCapacityByMinValue(network);
 
         // Assert
         assertEquals(expectedValue, actualValue, 0.01);

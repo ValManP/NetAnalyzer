@@ -6,7 +6,9 @@ package core.ga.controllers;
 import core.ga.operators.configuration.NetworkAllele;
 import core.ga.operators.configuration.factory.NetworkConfigurationFactory;
 import core.ga.operators.factories.alterer.types.IAltererType;
+import core.ga.operators.fitness.FitnessTypes;
 import core.ga.operators.fitness.GAFitness;
+import core.ga.operators.fitness.factory.FitnessFactory;
 import core.ga.operators.fitness.impl.RandomWeightFitness;
 import core.ga.operators.configuration.suppliers.NetworkSupplier;
 import core.ga.operators.configuration.validators.NetworkAlleleValidator;
@@ -29,11 +31,13 @@ import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 import static org.jenetics.engine.limit.bySteadyFitness;
 
 public class GANetworkController {
-    public static Engine.Builder compileBuilder(AbstractNetwork network, AbstractStorage storage) {
+    public static Engine.Builder compileBuilder(AbstractNetwork network, AbstractStorage storage, FitnessTypes fitness) {
         NetworkDescription networkDescription = new NetworkDescription(network, storage);
         int emptyPosCount = network.getEmptyPosition().size();
-        networkDescription.setMinDeviceCount(emptyPosCount - emptyPosCount / 6);
-        RandomWeightFitness fitnessFunction = new RandomWeightFitness(networkDescription);
+        networkDescription.setMinDeviceCount(emptyPosCount - emptyPosCount / 3);
+
+        FitnessFactory fitnessFactory = new FitnessFactory();
+        GAFitness<AnyGene<NetworkAllele>, Double> fitnessFunction = fitnessFactory.getFitness(fitness, networkDescription);
 
         return Engine.builder(fitnessFunction::eval, createNetworkConfigurationFactory(networkDescription));
     }

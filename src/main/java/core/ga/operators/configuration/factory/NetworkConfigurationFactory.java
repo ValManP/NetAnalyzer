@@ -33,9 +33,26 @@ public class NetworkConfigurationFactory implements Factory<Genotype<AnyGene<Net
         AnyChromosome<NetworkAllele> chromosome = AnyChromosome.of(supplier, alleleValidator,
                 alleleSeqValidator, networkDescription.getStorage().getSize());
 
-        initializeChromosome(chromosome);
+        //initializeChromosome(chromosome);
 
         return Genotype.of(chromosome);
+    }
+    /*
+    private void initializeChromosome(AnyChromosome<NetworkAllele> chromosome) {
+        Random random = new Random();
+        int emptyPositionsSize = networkDescription.getEmptyPosition().size();
+
+        double deviceProbability;
+        double deviceProbabilityBorder = (double) networkDescription.getMinDeviceCount() / (double) emptyPositionsSize;
+        int devicePosition;
+        for (int i = 0; i < chromosome.length(); i++) {
+            deviceProbability = random.nextDouble();
+            if (deviceProbability < deviceProbabilityBorder) {
+                devicePosition = random.nextInt(emptyPositionsSize);
+                chromosome.getGene(i).getAllele().isSet = true;
+                chromosome.getGene(i).getAllele().position = networkDescription.getEmptyPosition().get(devicePosition);
+            }
+        }
     }
 
     private void initializeChromosome(AnyChromosome<NetworkAllele> chromosome) {
@@ -68,5 +85,5 @@ public class NetworkConfigurationFactory implements Factory<Genotype<AnyGene<Net
                 indexOfDevice++;
             }
         }
-    }
+    }*/
 }

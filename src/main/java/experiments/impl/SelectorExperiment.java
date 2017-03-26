@@ -9,7 +9,6 @@ import org.jenetics.engine.EvolutionResult;
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 public class SelectorExperiment extends AbstractExperiment {
     private List<SelectorTypes> selectorTypes = ImmutableList.<SelectorTypes>builder()
             .add(SelectorTypes.TOURNAMENT_SELECTOR)

@@ -13,6 +13,8 @@ import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.ga.operators.factories.impl.CrossoverFactory;
 import core.ga.operators.factories.impl.MutatorFactory;
 import core.ga.operators.factories.impl.SelectorFactory;
+import core.ga.operators.fitness.FitnessTypes;
+import core.ga.operators.fitness.GAFitness;
 import core.model.inventory.AbstractStorage;
 import core.model.network.AbstractNetwork;
 import org.jenetics.Alterer;
@@ -28,12 +30,14 @@ import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 public class Evolution {
     private AbstractNetwork network;
     private AbstractStorage storage;
+    private FitnessTypes fitness;
     private Engine engine;
     private Engine.Builder builder;
 
-    public Evolution(AbstractNetwork network, AbstractStorage storage) {
+    public Evolution(AbstractNetwork network, AbstractStorage storage, FitnessTypes fitness) {
         this.network = network;
         this.storage = storage;
+        this.fitness = fitness;
     }
 
     public Evolution buildEngine(){
@@ -58,7 +62,7 @@ public class Evolution {
     }
 
     public Evolution builder() {
-        builder = GANetworkController.compileBuilder(network, storage);
+        builder = GANetworkController.compileBuilder(network, storage, fitness);
         return this;
     }
 

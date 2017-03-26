@@ -10,9 +10,9 @@ import experiments.AbstractExperiment;
 import experiments.ExperimentParameters;
 import org.jenetics.engine.EvolutionResult;
 
+import java.io.IOException;
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 public class CrossoverExperiment extends AbstractExperiment {
     private List<CrossoverTypes> crossoverTypes = ImmutableList.<CrossoverTypes>builder()
             .add(CrossoverTypes.UNIFORM_CROSSOVER)
@@ -44,6 +44,12 @@ public class CrossoverExperiment extends AbstractExperiment {
                 probability += parameters.getExperimentStep();
             }
 
+        }
+
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
         }
     }
 }

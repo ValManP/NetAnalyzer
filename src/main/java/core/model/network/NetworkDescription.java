@@ -10,6 +10,7 @@ import java.util.List;
 public class NetworkDescription {
     private List<Integer> emptyPosition;
     private int minDeviceCount;
+    private double deviceProbabilityBorder;
     private AbstractNetwork network;
     private AbstractStorage storage;
 
@@ -25,6 +26,7 @@ public class NetworkDescription {
 
     public void setMinDeviceCount(int minDeviceCount) {
         this.minDeviceCount = minDeviceCount;
+        deviceProbabilityBorder = (double) minDeviceCount / (double) emptyPosition.size();
     }
 
     public AbstractNetwork getNetwork() {
@@ -49,5 +51,9 @@ public class NetworkDescription {
 
     public void setEmptyPosition(List<Integer> emptyPosition) {
         this.emptyPosition = emptyPosition;
+    }
+
+    public double getDeviceProbabilityBorder() {
+        return deviceProbabilityBorder;
     }
 }

@@ -1,6 +1,7 @@
 package experiments;
 
 import core.ga.facade.Evolution;
+import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.MutatorTypes;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.model.inventory.AbstractStorage;
@@ -15,8 +16,12 @@ import core.model.network.impl.DoubleNetwork;
 import experiments.ExperimentExecutor;
 import experiments.ExperimentParameters;
 import experiments.impl.CrossoverExperiment;
+import experiments.impl.MutatorExperiment;
+import experiments.impl.PopulationExperiment;
+import experiments.impl.SelectorExperiment;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Random;
@@ -44,10 +49,61 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new CrossoverExperiment(
-                new ExperimentParameters(network, storage, 0.1, 2,
+                new ExperimentParameters(network, storage, 0.1, 5,
                         null, MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 5),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 5),
                 "crossover.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteMutatorExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new MutatorExperiment(
+                new ExperimentParameters(network, storage, 0.1, 5,
+                        CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 5),
+                "mutator.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecutePopulationExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new PopulationExperiment(
+                new ExperimentParameters(network, storage, 0.1, 5,
+                        CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 2, 5),
+                "population.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteSelectorExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new SelectorExperiment(
+                new ExperimentParameters(network, storage, 0.1, 5,
+                        CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2),  MutatorTypes.MUTATOR.withProbability(0.01),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 5),
+                "selector.txt"));
 
         // Act
         executor.process();

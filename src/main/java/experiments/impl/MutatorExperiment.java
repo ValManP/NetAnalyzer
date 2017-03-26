@@ -12,7 +12,6 @@ import org.jenetics.engine.EvolutionResult;
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 public class MutatorExperiment extends AbstractExperiment {
     private List<MutatorTypes> mutatorTypes = ImmutableList.<MutatorTypes>builder()
             .add(MutatorTypes.MUTATOR)

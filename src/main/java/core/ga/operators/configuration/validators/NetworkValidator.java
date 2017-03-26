@@ -19,18 +19,9 @@ public class NetworkValidator<A> implements Predicate<ISeq<NetworkAllele>> {
 
     @Override
     public boolean test(ISeq<NetworkAllele> networkAlleles) {
-
-        int valid = validateChromosome(networkAlleles);
-        if (valid == 0) {
-            fixChromosome(networkAlleles);
-            valid = validateChromosome(networkAlleles);
-        }
-        if (valid != 2) {
-            return false;
-        }
         return true;
     }
-
+    /*
     private int validateChromosome(ISeq<NetworkAllele> networkAlleles) {
         Set<Integer> positions = new HashSet<>();
 
@@ -80,5 +71,5 @@ public class NetworkValidator<A> implements Predicate<ISeq<NetworkAllele>> {
                 positions[devicePosition] = 1;
             }
         }
-    }
+    }*/
 }

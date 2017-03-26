@@ -19,8 +19,15 @@ public class NetworkSupplier implements Supplier<NetworkAllele> {
     @Override
     public NetworkAllele get() {
         Random random = new Random();
-        boolean isSet = false;//random.nextBoolean();
-        int position = -1;//networkDescription.getEmptyPosition().get(random.nextInt(networkDescription.getEmptyPosition().size()));
+        boolean isSet = false;
+        int position = -1;
+
+        double deviceProbability = random.nextDouble();
+        if (deviceProbability < networkDescription.getDeviceProbabilityBorder()) {
+            int devicePosition = random.nextInt(networkDescription.getEmptyPosition().size());
+            isSet = true;
+            position = networkDescription.getEmptyPosition().get(devicePosition);
+        }
 
         return new NetworkAllele(isSet, position);
     }
