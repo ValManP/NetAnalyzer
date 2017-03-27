@@ -5,6 +5,8 @@ import experiments.AbstractExperiment;
 import experiments.ExperimentParameters;
 import org.jenetics.Phenotype;
 
+import java.io.IOException;
+
 public class PopulationExperiment extends AbstractExperiment {
     public PopulationExperiment(ExperimentParameters parameters, String fileName) {
         super(parameters, fileName);
@@ -25,6 +27,12 @@ public class PopulationExperiment extends AbstractExperiment {
             }
 
             population += (int)parameters.getExperimentStep();
+        }
+
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
         }
     }
 }

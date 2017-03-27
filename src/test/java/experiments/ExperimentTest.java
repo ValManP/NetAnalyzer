@@ -1,36 +1,24 @@
 package experiments;
 
-import core.ga.facade.Evolution;
 import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.MutatorTypes;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.model.inventory.AbstractStorage;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
-import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
 import core.model.inventory.impl.storage.Device;
 import core.model.inventory.impl.storage.DoubleStorage;
 import core.model.network.AbstractNetwork;
 import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
-import experiments.ExperimentExecutor;
-import experiments.ExperimentParameters;
-import experiments.impl.CrossoverExperiment;
-import experiments.impl.MutatorExperiment;
-import experiments.impl.PopulationExperiment;
-import experiments.impl.SelectorExperiment;
+import experiments.impl.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Random;
 
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by Поздяев on 22.03.2017.
- */
 public class ExperimentTest {
     private int storageSize = 20;
     private int networkSize = 21;
@@ -49,9 +37,9 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new CrossoverExperiment(
-                new ExperimentParameters(network, storage, 0.1, 5,
+                new ExperimentParameters(network, storage, 0.1, 10,
                         null, MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 5),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 10),
                 "crossover.txt"));
 
         // Act
@@ -66,9 +54,9 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new MutatorExperiment(
-                new ExperimentParameters(network, storage, 0.1, 5,
+                new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 5),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 10),
                 "mutator.txt"));
 
         // Act
@@ -83,9 +71,9 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new PopulationExperiment(
-                new ExperimentParameters(network, storage, 5, 5,
+                new ExperimentParameters(network, storage, 5, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 3),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 10),
                 "population.txt"));
 
         // Act
@@ -100,10 +88,27 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new SelectorExperiment(
-                new ExperimentParameters(network, storage, 0.1, 5,
+                new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2),  MutatorTypes.MUTATOR.withProbability(0.01),
-                        null, 5, 5),
+                        null, 10, 10),
                 "selector.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteConvergenceExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new ConvergenceExperiment(
+                new ExperimentParameters(network, storage, 1, 10,
+                        CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 3),
+                "convergence.txt"));
 
         // Act
         executor.process();

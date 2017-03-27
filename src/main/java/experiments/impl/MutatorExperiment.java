@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package experiments.impl;
 
 import com.google.common.collect.ImmutableList;
@@ -10,6 +7,7 @@ import experiments.AbstractExperiment;
 import experiments.ExperimentParameters;
 import org.jenetics.engine.EvolutionResult;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MutatorExperiment extends AbstractExperiment {
@@ -41,6 +39,12 @@ public class MutatorExperiment extends AbstractExperiment {
                 probability += parameters.getExperimentStep();
             }
 
+        }
+
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
         }
     }
 }

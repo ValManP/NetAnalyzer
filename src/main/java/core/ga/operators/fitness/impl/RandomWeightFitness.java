@@ -1,12 +1,9 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.fitness.impl;
 
 import core.ga.controllers.GANetworkController;
-import core.model.controllers.NetworkController;
 import core.ga.operators.configuration.NetworkAllele;
 import core.ga.operators.fitness.GAFitness;
+import core.model.controllers.NetworkController;
 import core.model.network.NetworkDescription;
 import core.model.network.impl.DoubleNetwork;
 import org.jenetics.AnyGene;
@@ -29,8 +26,8 @@ public class RandomWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Doubl
     public Double eval(Genotype<AnyGene<NetworkAllele>> gt) {
         DoubleNetwork network = GANetworkController.applyConfiguration(networkDescription, gt.getChromosome());
 
-        double averageCapacity = NetworkController.calculateNetworkCapacityByMinValue(network);
-        double cost = NetworkController.calculateNetworkCost(network);
+        double averageCapacity = normalizeCapacity(NetworkController.calculateNetworkCapacityByMinValue(network));
+        double cost = normalizeCost(NetworkController.calculateNetworkCost(network));
 
         return weight1 * averageCapacity - weight2 * cost;
     }

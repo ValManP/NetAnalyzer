@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.inventory;
 
 import java.util.ArrayList;
@@ -8,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class AbstractStorage<N> {
-    protected List<N> elements;
+    private List<N> elements;
 
     public AbstractStorage() {
         elements = new ArrayList<>();
@@ -28,6 +25,10 @@ public abstract class AbstractStorage<N> {
 
     public N getElement(int position) {
         return elements.get(position);
+    }
+
+    public List<N> getElements() {
+        return elements;
     }
 
     public int getElementPosition(N element) {

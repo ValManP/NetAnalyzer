@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.facade;
 
 import core.ga.controllers.GANetworkController;
@@ -14,18 +11,18 @@ import core.ga.operators.factories.impl.CrossoverFactory;
 import core.ga.operators.factories.impl.MutatorFactory;
 import core.ga.operators.factories.impl.SelectorFactory;
 import core.ga.operators.fitness.FitnessTypes;
-import core.ga.operators.fitness.GAFitness;
 import core.model.inventory.AbstractStorage;
 import core.model.network.AbstractNetwork;
 import org.jenetics.Alterer;
 import org.jenetics.AnyGene;
-import org.jenetics.Genotype;
 import org.jenetics.Phenotype;
 import org.jenetics.engine.Engine;
 import org.jenetics.engine.EvolutionResult;
 
 import static org.jenetics.engine.EvolutionResult.toBestEvolutionResult;
 import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
+import static org.jenetics.engine.limit.byFixedGeneration;
+import static org.jenetics.engine.limit.bySteadyFitness;
 
 public class Evolution {
     private AbstractNetwork network;
@@ -71,11 +68,18 @@ public class Evolution {
     }
 
     public Phenotype evolveToBestPhenotype(int generations) {
-        return (Phenotype<AnyGene<NetworkAllele>, Double>) GANetworkController.evolve(engine, generations, toBestPhenotype());
+        return (Phenotype<AnyGene<NetworkAllele>, Double>)
+                GANetworkController.evolve(engine, byFixedGeneration(generations), toBestPhenotype());
     }
 
     public EvolutionResult evolve(int generations) {
-        return (EvolutionResult<AnyGene<NetworkAllele>, Double>) GANetworkController.evolve(engine, generations, toBestEvolutionResult());
+        return (EvolutionResult<AnyGene<NetworkAllele>, Double>)
+                GANetworkController.evolve(engine, byFixedGeneration(generations), toBestEvolutionResult());
+    }
+
+    public EvolutionResult evolveBySteadyFitness(int steadyFitnessLimit) {
+        return (EvolutionResult<AnyGene<NetworkAllele>, Double>)
+                GANetworkController.evolve(engine, bySteadyFitness(steadyFitnessLimit), toBestEvolutionResult());
     }
 
     public AbstractNetwork getNetwork() {

@@ -7,6 +7,7 @@ import experiments.AbstractExperiment;
 import experiments.ExperimentParameters;
 import org.jenetics.engine.EvolutionResult;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SelectorExperiment extends AbstractExperiment {
@@ -39,6 +40,12 @@ public class SelectorExperiment extends AbstractExperiment {
                 writeToLog(result.getBestFitness().toString(),
                         String.valueOf(result.getTotalGenerations()), String.valueOf(getExperimentTime()));
             }
+        }
+
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
         }
     }
 }

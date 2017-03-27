@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.fitness.impl;
 
 import core.ga.controllers.GANetworkController;
@@ -11,8 +8,6 @@ import core.model.network.NetworkDescription;
 import core.model.network.impl.DoubleNetwork;
 import org.jenetics.AnyGene;
 import org.jenetics.Genotype;
-
-import java.util.Random;
 
 public class ConstantWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Double> {
     private double weight1;
@@ -28,8 +23,8 @@ public class ConstantWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Dou
     public Double eval(Genotype<AnyGene<NetworkAllele>> gt) {
         DoubleNetwork network = GANetworkController.applyConfiguration(networkDescription, gt.getChromosome());
 
-        double averageCapacity = NetworkController.calculateNetworkCapacityByMinValue(network);
-        double cost = NetworkController.calculateNetworkCost(network);
+        double averageCapacity = normalizeCapacity(NetworkController.calculateNetworkCapacityByMinValue(network));
+        double cost = normalizeCost(NetworkController.calculateNetworkCost(network));
 
         return weight1 * averageCapacity - weight2 * cost;
     }

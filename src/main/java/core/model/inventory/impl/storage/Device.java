@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.inventory.impl.storage;
 
 public class Device {
@@ -24,5 +21,13 @@ public class Device {
 
     public double getPrice() {
         return price;
+    }
+
+    public static int compareByPrice(Device device1, Device device2) {
+        return Double.compare(device1.getPrice(), device2.getPrice());
+    }
+
+    public static int compareByCapacity(Device device1, Device device2) {
+        return Double.compare(device1.getCapacity(), device2.getCapacity());
     }
 }
