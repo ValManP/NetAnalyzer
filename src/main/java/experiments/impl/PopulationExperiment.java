@@ -12,7 +12,7 @@ public class PopulationExperiment extends AbstractExperiment {
 
     @Override
     public void execute() {
-        int population = parameters.getInitialPopulation(), finish = population * 2;
+        int population = parameters.getInitialPopulation(), finish = population * 5;
         while (population < finish) {
             for (int i = 0; i < parameters.getTimeOfExecution(); i++) {
                 start();

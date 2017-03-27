@@ -83,9 +83,9 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new PopulationExperiment(
-                new ExperimentParameters(network, storage, 0.1, 5,
+                new ExperimentParameters(network, storage, 5, 5,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 2, 5),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 3),
                 "population.txt"));
 
         // Act
@@ -102,7 +102,7 @@ public class ExperimentTest {
         executor.addExperiment(new SelectorExperiment(
                 new ExperimentParameters(network, storage, 0.1, 5,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2),  MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 5),
+                        null, 5, 5),
                 "selector.txt"));
 
         // Act
