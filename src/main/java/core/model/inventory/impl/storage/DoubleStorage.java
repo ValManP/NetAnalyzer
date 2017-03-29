@@ -1,10 +1,6 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.inventory.impl.storage;
 
 import core.model.inventory.AbstractStorage;
-import core.model.inventory.NetworkElement;
 
 import java.util.List;
 

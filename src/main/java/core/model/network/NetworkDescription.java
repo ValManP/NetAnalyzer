@@ -7,13 +7,12 @@ import core.model.inventory.impl.storage.DoubleStorage;
 import java.util.List;
 
 public class NetworkDescription {
+    public NormalizeCoefficient capacityNormalizeCoefficient, costNormalizeCoefficient;
     private List<Integer> emptyPosition;
     private int minDeviceCount;
     private double deviceProbabilityBorder;
     private AbstractNetwork network;
     private AbstractStorage storage;
-
-    public NormalizeCoefficient capacityNormalizeCoefficient, costNormalizeCoefficient;
 
     public NetworkDescription(AbstractNetwork network, AbstractStorage storage) {
         this.network = network;

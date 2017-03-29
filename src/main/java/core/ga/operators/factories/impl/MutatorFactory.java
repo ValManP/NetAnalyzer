@@ -1,12 +1,11 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.factories.impl;
 
 import core.ga.operators.factories.IAlterFactory;
 import core.ga.operators.factories.alterer.types.IAltererType;
 import core.ga.operators.factories.alterer.types.MutatorTypes;
-import org.jenetics.*;
+import org.jenetics.AbstractAlterer;
+import org.jenetics.Mutator;
+import org.jenetics.SwapMutator;
 
 public class MutatorFactory implements IAlterFactory {
     @Override

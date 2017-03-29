@@ -1,15 +1,10 @@
 package experiments;
 
-import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.IAltererType;
-import core.ga.operators.factories.alterer.types.MutatorTypes;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.model.inventory.AbstractStorage;
 import core.model.network.AbstractNetwork;
 
-/**
- * Created by Поздяев on 20.03.2017.
- */
 public class ExperimentParameters {
     private AbstractNetwork network;
     private AbstractStorage storage;
@@ -55,25 +50,13 @@ public class ExperimentParameters {
         return crossover;
     }
 
-    public IAltererType getMutator() {
-        return mutator;
-    }
-
-    public SelectorTypes getSelector() {
-        return selector;
-    }
-
-    public int getInitialPopulation() {
-        return initialPopulation;
-    }
-
-    public int getGenerationLimit() {
-        return generationLimit;
-    }
-
     public ExperimentParameters setCrossover(IAltererType crossover) {
         this.crossover = crossover;
         return this;
+    }
+
+    public IAltererType getMutator() {
+        return mutator;
     }
 
     public ExperimentParameters setMutator(IAltererType mutator) {
@@ -81,13 +64,25 @@ public class ExperimentParameters {
         return this;
     }
 
+    public SelectorTypes getSelector() {
+        return selector;
+    }
+
     public ExperimentParameters setSelector(SelectorTypes selector) {
         this.selector = selector;
         return this;
     }
 
+    public int getInitialPopulation() {
+        return initialPopulation;
+    }
+
     public ExperimentParameters setInitialPopulation(int initialPopulation) {
         this.initialPopulation = initialPopulation;
         return this;
+    }
+
+    public int getGenerationLimit() {
+        return generationLimit;
     }
 }

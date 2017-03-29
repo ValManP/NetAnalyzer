@@ -35,15 +35,15 @@ public abstract class AbstractStorage<N> {
         return elements.indexOf(element);
     }
 
-    public void removeElement(N element){
+    public void removeElement(N element) {
         elements.remove(element);
     }
 
-    public void removeElement(int position){
+    public void removeElement(int position) {
         elements.remove(position);
     }
 
-    public void setElement(N element, int position){
+    public void setElement(N element, int position) {
         elements.set(position, element);
     }
 

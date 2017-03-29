@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.factories.impl;
 
 import core.ga.operators.factories.ISelectorFactory;
@@ -26,7 +23,7 @@ public class SelectorFactory implements ISelectorFactory {
         } else if (selectorTypes == SelectorTypes.STOCHASTIC_UNIVERSAL_SELECTOR) {
             result = new StochasticUniversalSelector();
         } else if (selectorTypes == SelectorTypes.TOURNAMENT_SELECTOR) {
-            result = (SelectorTypes.SELECTION_VARIABLE == selectionVariable) ? new TournamentSelector() : new TournamentSelector((int)selectionVariable);
+            result = (SelectorTypes.SELECTION_VARIABLE == selectionVariable) ? new TournamentSelector() : new TournamentSelector((int) selectionVariable);
         } else if (selectorTypes == SelectorTypes.TRUNCATION_SELECTOR) {
             result = new TruncationSelector();
         }

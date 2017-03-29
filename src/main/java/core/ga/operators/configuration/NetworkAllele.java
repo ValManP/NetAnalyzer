@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.configuration;
 
 public class NetworkAllele {
@@ -10,6 +7,10 @@ public class NetworkAllele {
     public NetworkAllele(boolean isSet, int position) {
         this.isSet = isSet;
         this.position = position;
+    }
+
+    public static int getPosition(NetworkAllele allele) {
+        return allele.getPosition();
     }
 
     public boolean isSet() {
@@ -26,9 +27,5 @@ public class NetworkAllele {
 
     public void setPosition(int position) {
         this.position = position;
-    }
-
-    public static int getPosition(NetworkAllele allele) {
-        return allele.getPosition();
     }
 }

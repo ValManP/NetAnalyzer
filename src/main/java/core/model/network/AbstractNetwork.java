@@ -1,12 +1,5 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.network;
 
-import core.model.inventory.NetworkElement;
-import core.model.inventory.impl.networkelement.EmptyElement;
-import core.model.inventory.impl.networkelement.SwitchNetworkElement;
-import core.model.inventory.impl.storage.Device;
 import core.utils.CommonTool;
 
 import java.util.List;

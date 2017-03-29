@@ -8,7 +8,7 @@ import org.jenetics.engine.EvolutionResult;
 
 import java.io.IOException;
 
-public class ConvergenceWithTournamentSelectorExperiment extends AbstractExperiment{
+public class ConvergenceWithTournamentSelectorExperiment extends AbstractExperiment {
     public ConvergenceWithTournamentSelectorExperiment(ExperimentParameters parameters, String fileName) {
         super(parameters, fileName);
     }

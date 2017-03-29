@@ -1,30 +1,19 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package experiments;
 
 import core.ga.facade.Evolution;
-import core.ga.operators.factories.alterer.types.CrossoverTypes;
-import core.ga.operators.factories.alterer.types.MutatorTypes;
-import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.ga.operators.fitness.FitnessTypes;
-import core.model.inventory.AbstractStorage;
-import core.model.network.AbstractNetwork;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public abstract class AbstractExperiment {
+    protected FileWriter fileWriter;
+    protected ExperimentParameters parameters;
     private long startTime, endTime;
     private String logFile;
-    protected FileWriter fileWriter;
     private Path file;
-    protected ExperimentParameters parameters;
 
     public AbstractExperiment(ExperimentParameters parameters, String fileName) {
         this.parameters = parameters;
@@ -63,7 +52,7 @@ public abstract class AbstractExperiment {
         try {
             fileWriter.write(Arrays.toString(data) + "\n");
         } catch (IOException e) {
-            System.out.print(e);
+            System.out.print(e.getLocalizedMessage());
         }
     }
 }

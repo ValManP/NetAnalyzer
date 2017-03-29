@@ -1,10 +1,5 @@
 package core.ga.operators.fitness;
 
-import core.ga.operators.factories.alterer.types.SelectorTypes;
-
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 public enum FitnessTypes {
     CONSTANT_WEIGHT_FITNESS,
     RANDOM_WEIGHT_FITNESS;

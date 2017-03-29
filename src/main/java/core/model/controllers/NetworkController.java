@@ -1,11 +1,8 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.controllers;
 
+import core.model.inventory.NetworkElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.network.impl.DoubleNetwork;
-import core.model.inventory.NetworkElement;
 import lpsolve.LpSolve;
 
 import java.util.List;
@@ -15,7 +12,7 @@ public class NetworkController {
         double cost = 0;
 
         for (NetworkElement hub : network.getSwitches()) {
-            cost += ((SwitchNetworkElement)hub).getPrice();
+            cost += ((SwitchNetworkElement) hub).getPrice();
         }
 
         return cost;

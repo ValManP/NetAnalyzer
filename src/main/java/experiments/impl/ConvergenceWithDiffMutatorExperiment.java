@@ -10,7 +10,7 @@ import org.jenetics.engine.EvolutionResult;
 import java.io.IOException;
 import java.util.List;
 
-public class ConvergenceWithDiffMutatorExperiment extends AbstractExperiment{
+public class ConvergenceWithDiffMutatorExperiment extends AbstractExperiment {
     private List<MutatorTypes> mutatorTypes = ImmutableList.<MutatorTypes>builder()
             .add(MutatorTypes.MUTATOR)
             .add(MutatorTypes.SWAP_MUTATOR)

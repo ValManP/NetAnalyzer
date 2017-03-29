@@ -26,7 +26,7 @@ public class PopulationExperiment extends AbstractExperiment {
                         String.valueOf(phenotype.getGeneration()), String.valueOf(getExperimentTime()));
             }
 
-            population += (int)parameters.getExperimentStep();
+            population += (int) parameters.getExperimentStep();
         }
 
         try {

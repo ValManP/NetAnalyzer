@@ -1,17 +1,13 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.configuration.validators;
 
 import core.ga.operators.configuration.NetworkAllele;
 import core.model.network.NetworkDescription;
 import org.jenetics.util.ISeq;
 
-import java.util.*;
 import java.util.function.Predicate;
 
 public class NetworkValidator<A> implements Predicate<ISeq<NetworkAllele>> {
-    NetworkDescription networkDescription;
+    private NetworkDescription networkDescription;
 
     public NetworkValidator(NetworkDescription networkDescription) {
         this.networkDescription = networkDescription;

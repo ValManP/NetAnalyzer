@@ -37,12 +37,12 @@ public class Evolution {
         this.fitness = fitness;
     }
 
-    public Evolution buildEngine(){
+    public Evolution buildEngine() {
         engine = builder.build();
         return this;
     }
 
-    public Evolution alterer(IAltererType crossover, IAltererType mutator){
+    public Evolution alterer(IAltererType crossover, IAltererType mutator) {
         builder.alterers(getAlterer(crossover), getAlterer(mutator));
         return this;
     }

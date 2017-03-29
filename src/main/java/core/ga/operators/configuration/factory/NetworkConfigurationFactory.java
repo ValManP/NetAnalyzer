@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga.operators.configuration.factory;
 
 import core.ga.operators.configuration.NetworkAllele;
@@ -13,13 +10,11 @@ import org.jenetics.AnyGene;
 import org.jenetics.Genotype;
 import org.jenetics.util.Factory;
 
-import java.util.*;
-
 public class NetworkConfigurationFactory implements Factory<Genotype<AnyGene<NetworkAllele>>> {
-    private NetworkDescription networkDescription;
     private final NetworkSupplier supplier;
     private final NetworkAlleleValidator alleleValidator;
     private final NetworkValidator alleleSeqValidator;
+    private NetworkDescription networkDescription;
 
     public NetworkConfigurationFactory(NetworkDescription networkDescription, NetworkSupplier supplier, NetworkAlleleValidator alleleValidator, NetworkValidator alleleSeqValidator) {
         this.networkDescription = networkDescription;
