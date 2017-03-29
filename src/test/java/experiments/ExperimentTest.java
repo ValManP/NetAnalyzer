@@ -15,6 +15,7 @@ import experiments.impl.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +41,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 0.1, 10,
                         null, MutatorTypes.MUTATOR.withProbability(0.01),
                         SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 4),
-                "crossover.txt"));
+                generateFileName("crossover")));
 
         // Act
         executor.process();
@@ -57,7 +58,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
                         SelectorTypes.TOURNAMENT_SELECTOR, 5, 4),
-                "mutator.txt"));
+                generateFileName("mutator")));
 
         // Act
         executor.process();
@@ -74,7 +75,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 5, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
                         SelectorTypes.TOURNAMENT_SELECTOR, 5, 4),
-                "population.txt"));
+                generateFileName("population")));
 
         // Act
         executor.process();
@@ -91,7 +92,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2),  MutatorTypes.MUTATOR.withProbability(0.01),
                         null, 5, 4),
-                "selector.txt"));
+                generateFileName("selector")));
 
         // Act
         executor.process();
@@ -108,7 +109,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
                         SelectorTypes.TOURNAMENT_SELECTOR, 10, 4),
-                "convergence.txt"));
+                generateFileName("convergence")));
 
         // Act
         executor.process();
@@ -125,7 +126,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 1, 10,
                         null, MutatorTypes.MUTATOR.withProbability(0.01),
                         SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
-                "convergenceCrossover.txt"));
+                generateFileName("convergenceCrossover")));
 
         // Act
         executor.process();
@@ -142,7 +143,7 @@ public class ExperimentTest {
                 new ExperimentParameters(network, storage, 1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
                         SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
-                "convergenceMutator.txt"));
+                generateFileName("convergenceMutator")));
 
         // Act
         executor.process();
@@ -155,11 +156,11 @@ public class ExperimentTest {
     public void canExecuteConvergenceWithTournamentSelectorExperiment() {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
-        executor.addExperiment(new ConvergenceExperiment(
+        executor.addExperiment(new ConvergenceWithTournamentSelectorExperiment(
                 new ExperimentParameters(network, storage, 1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
                         null, 5, 3),
-                "convergence.txt"));
+                generateFileName("convergenceTournament")));
 
         // Act
         executor.process();
@@ -168,8 +169,8 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
-    private AbstractStorage createStorage(int storageSize, double minCapacity, double maxCapacity,
-                                          double minPrice, double maxPrice) {
+    private static AbstractStorage createStorage(int storageSize, double minCapacity, double maxCapacity,
+                                                 double minPrice, double maxPrice) {
         AbstractStorage storage = new DoubleStorage();
         Random random = new Random();
 
@@ -181,7 +182,7 @@ public class ExperimentTest {
         return storage;
     }
 
-    private DoubleNetwork createNetwork(int size) {
+    private static DoubleNetwork createNetwork(int size) {
         DoubleNetwork network = new DoubleNetwork(size);
         network.addRoot(new RootNetworkElement(130.0), 0);
         network.addRoot(new RootNetworkElement(120.0), 1);
@@ -223,5 +224,9 @@ public class ExperimentTest {
         network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0), 19, 11);
 
         return network;
+    }
+
+    private static String generateFileName(String experiment) {
+        return experiment.concat("_").concat(LocalDate.now().toString()).concat(".txt");
     }
 }
