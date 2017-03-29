@@ -39,7 +39,7 @@ public class ExperimentTest {
         executor.addExperiment(new CrossoverExperiment(
                 new ExperimentParameters(network, storage, 0.1, 10,
                         null, MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 10),
+                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 5, 4),
                 "crossover.txt"));
 
         // Act
@@ -56,7 +56,7 @@ public class ExperimentTest {
         executor.addExperiment(new MutatorExperiment(
                 new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 10),
+                        SelectorTypes.TOURNAMENT_SELECTOR, 5, 4),
                 "mutator.txt"));
 
         // Act
@@ -73,7 +73,7 @@ public class ExperimentTest {
         executor.addExperiment(new PopulationExperiment(
                 new ExperimentParameters(network, storage, 5, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 10),
+                        SelectorTypes.TOURNAMENT_SELECTOR, 5, 4),
                 "population.txt"));
 
         // Act
@@ -90,7 +90,7 @@ public class ExperimentTest {
         executor.addExperiment(new SelectorExperiment(
                 new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2),  MutatorTypes.MUTATOR.withProbability(0.01),
-                        null, 10, 10),
+                        null, 5, 4),
                 "selector.txt"));
 
         // Act
@@ -107,7 +107,58 @@ public class ExperimentTest {
         executor.addExperiment(new ConvergenceExperiment(
                 new ExperimentParameters(network, storage, 1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
-                        SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(2.0), 10, 3),
+                        SelectorTypes.TOURNAMENT_SELECTOR, 10, 4),
+                "convergence.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteConvergenceWithDiffCrossoverExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new ConvergenceWithDiffCrossoverExperiment(
+                new ExperimentParameters(network, storage, 1, 10,
+                        null, MutatorTypes.MUTATOR.withProbability(0.01),
+                        SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
+                "convergenceCrossover.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteConvergenceWithDiffMutatorExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new ConvergenceWithDiffMutatorExperiment(
+                new ExperimentParameters(network, storage, 1, 10,
+                        CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
+                        SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
+                "convergenceMutator.txt"));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteConvergenceWithTournamentSelectorExperiment() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        executor.addExperiment(new ConvergenceExperiment(
+                new ExperimentParameters(network, storage, 1, 10,
+                        CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
+                        null, 5, 3),
                 "convergence.txt"));
 
         // Act

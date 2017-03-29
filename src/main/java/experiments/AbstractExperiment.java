@@ -39,7 +39,7 @@ public abstract class AbstractExperiment {
     public abstract void execute();
 
     protected Evolution createEvolution(ExperimentParameters parameters) {
-        return (new Evolution(parameters.getNetwork(), parameters.getStorage(), FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75))
+        return (new Evolution(parameters.getNetwork(), parameters.getStorage(), FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.5))
         ).builder()
                 .alterer(parameters.getCrossover(), parameters.getMutator())
                 .selector(parameters.getSelector())
