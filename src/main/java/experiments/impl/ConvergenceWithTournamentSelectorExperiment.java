@@ -16,7 +16,7 @@ public class ConvergenceWithTournamentSelectorExperiment extends AbstractExperim
     @Override
     public void execute() {
         int selectorVariable = 2;
-        while (selectorVariable <= 10) {
+        while (selectorVariable <= 20) {
             for (int i = 0; i < parameters.getTimeOfExecution(); i++) {
                 start();
                 Evolution evolution = createEvolution(parameters.setSelector(SelectorTypes.TOURNAMENT_SELECTOR.withSelectionVariable(selectorVariable)));

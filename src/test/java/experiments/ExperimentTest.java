@@ -13,6 +13,7 @@ import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
 import experiments.impl.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -33,6 +34,7 @@ public class ExperimentTest {
         storage = createStorage(storageSize, minCapacity, maxCapacity, minPrice, maxPrice);
     }
 
+    @Ignore
     @Test
     public void canExecuteCrossoverExperiment() {
         // Arrange
@@ -50,6 +52,7 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
+    @Ignore
     @Test
     public void canExecuteMutatorExperiment() {
         // Arrange
@@ -67,6 +70,7 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
+    @Ignore
     @Test
     public void canExecutePopulationExperiment() {
         // Arrange
@@ -84,6 +88,7 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
+    @Ignore
     @Test
     public void canExecuteSelectorExperiment() {
         // Arrange
@@ -101,12 +106,13 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
+    @Ignore
     @Test
     public void canExecuteConvergenceExperiment() {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new ConvergenceExperiment(
-                new ExperimentParameters(network, storage, 1, 10,
+                new ExperimentParameters(network, storage, 1, 50,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
                         SelectorTypes.TOURNAMENT_SELECTOR, 10, 4),
                 generateFileName("convergence")));
@@ -123,7 +129,7 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new ConvergenceWithDiffCrossoverExperiment(
-                new ExperimentParameters(network, storage, 1, 10,
+                new ExperimentParameters(network, storage, 0.1, 10,
                         null, MutatorTypes.MUTATOR.withProbability(0.01),
                         SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
                 generateFileName("convergenceCrossover")));
@@ -140,7 +146,7 @@ public class ExperimentTest {
         // Arrange
         ExperimentExecutor executor = new ExperimentExecutor();
         executor.addExperiment(new ConvergenceWithDiffMutatorExperiment(
-                new ExperimentParameters(network, storage, 1, 10,
+                new ExperimentParameters(network, storage, 0.1, 10,
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), null,
                         SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
                 generateFileName("convergenceMutator")));
@@ -152,6 +158,7 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
+    @Ignore
     @Test
     public void canExecuteConvergenceWithTournamentSelectorExperiment() {
         // Arrange

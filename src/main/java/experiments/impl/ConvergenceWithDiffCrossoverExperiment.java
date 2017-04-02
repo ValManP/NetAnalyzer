@@ -26,15 +26,20 @@ public class ConvergenceWithDiffCrossoverExperiment extends AbstractExperiment {
     public void execute() {
 
         for (CrossoverTypes type : crossoverTypes) {
+            double probability = 0.5;
             writeToLog(type.name());
-            for (int i = 0; i < parameters.getTimeOfExecution(); i++) {
-                start();
-                Evolution evolution = createEvolution(parameters.setCrossover(type));
-                EvolutionResult result = evolution.evolveBySteadyFitness(parameters.getGenerationLimit());
-                finish();
+            while (probability <= 1) {
+                for (int i = 0; i < parameters.getTimeOfExecution(); i++) {
+                    start();
+                    Evolution evolution = createEvolution(parameters.setCrossover(type.withProbability(probability)));
+                    EvolutionResult result = evolution.evolveBySteadyFitness(parameters.getGenerationLimit());
+                    finish();
 
-                writeToLog(result.getBestFitness().toString(),
-                        String.valueOf(result.getTotalGenerations()), String.valueOf(getExperimentTime()));
+                    writeToLog(result.getBestFitness().toString(),
+                            String.valueOf(result.getTotalGenerations()), String.valueOf(getExperimentTime()));
+                }
+
+                probability += parameters.getExperimentStep();
             }
         }
 
