@@ -1,12 +1,10 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.network.impl;
 
 import core.model.inventory.NetworkElement;
 import core.model.inventory.impl.networkelement.EmptyElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.inventory.impl.storage.Device;
+import core.model.network.AbstractLink;
 import core.model.network.AbstractNetwork;
 
 import java.util.ArrayList;
@@ -16,6 +14,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DoubleNetwork extends AbstractNetwork<Double, NetworkElement> {
+    public DoubleNetwork() {
+        this.size = 0;
+        networkElements = new ArrayList<>();
+        roots = new ArrayList<>();
+        switches = new ArrayList<>();
+        users = new ArrayList<>();
+    }
+    
     public DoubleNetwork(int size) {
         this.size = size;
         linksMatrix = new DoubleLink[size][size];
@@ -44,6 +50,30 @@ public class DoubleNetwork extends AbstractNetwork<Double, NetworkElement> {
         }
     }
 
+    public void addUser(NetworkElement user) {
+        this.size++;
+        increaseLinksMatrix();
+        addUser(user, this.size - 1);
+    }
+
+    public void addSwitch(NetworkElement hub) {
+        this.size++;
+        increaseLinksMatrix();
+        addSwitch(hub, this.size - 1);
+    }
+
+    public void addRoot(NetworkElement root) {
+        this.size++;
+        increaseLinksMatrix();
+        addRoot(root, this.size - 1);
+    }
+
+    public void addEmptyElement(NetworkElement empty) {
+        this.size++;
+        increaseLinksMatrix();
+        networkElements.add(empty);
+    }
+    
     @Override
     public void removeRoot(NetworkElement root) {
         super.removeRoot(root);
@@ -71,5 +101,14 @@ public class DoubleNetwork extends AbstractNetwork<Double, NetworkElement> {
             }
         }
         return emptyPosition;
+    }
+
+    private void increaseLinksMatrix() {
+        AbstractLink[][] newLinksMatrix = new AbstractLink[this.size][this.size];
+        for (int i = 0; i < this.size - 1; i++) {
+            newLinksMatrix[i] = Arrays.copyOf(linksMatrix[i], this.size);
+        }
+
+        linksMatrix = newLinksMatrix;
     }
 }

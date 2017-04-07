@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.inventory;
 
 public abstract class NetworkElement {
@@ -19,5 +16,10 @@ public abstract class NetworkElement {
 
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkElement{" + "capacity=" + capacity + '}';
     }
 }

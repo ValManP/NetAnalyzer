@@ -1,11 +1,16 @@
 package core.model.controllers;
 
 import core.model.inventory.NetworkElement;
+import core.model.inventory.impl.networkelement.EmptyElement;
+import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
+import core.model.inventory.impl.networkelement.UserNetworkElement;
+import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
 import lpsolve.LpSolve;
 
 import java.util.List;
+import java.util.Random;
 
 public class NetworkController {
     public static double calculateNetworkCost(DoubleNetwork network) {
@@ -82,5 +87,40 @@ public class NetworkController {
         }
 
         return networkArray;
+    }
+
+    public static DoubleNetwork generateNetwork(int layerSize, int layersCount, double minCapacity, double maxCapacity) {
+        DoubleNetwork network = new DoubleNetwork(layerSize * layersCount);
+        Random random = new Random();
+        double randomValue = 0;
+
+
+        for (int i = 0; i < layerSize; i++) {
+            randomValue = (maxCapacity - minCapacity) * random.nextDouble() + minCapacity;
+            network.addRoot(new RootNetworkElement(randomValue), i);
+        }
+
+        for (int row = 1; row < layersCount - 1; row++) {
+            for (int col = 0; col < layerSize; col++) {
+                network.addSwitch(new EmptyElement(), row * layerSize + col);
+                for (int i = 0; i < layerSize; i++) {
+                    network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0),
+                            (row - 1) * layerSize + i,
+                            row * layerSize + col);
+                }
+            }
+        }
+
+
+        for (int col = 0; col < layerSize; col++) {
+            network.addUser(new UserNetworkElement(50, 30), (layersCount - 1) * layerSize + col);
+            for (int i = 0; i < layerSize; i++) {
+                network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0),
+                        (layersCount - 2) * layerSize + i,
+                        (layersCount - 1) * layerSize + col);
+            }
+        }
+
+        return network;
     }
 }

@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.model.inventory.impl.networkelement;
 
 import core.model.inventory.NetworkElement;
@@ -19,5 +16,10 @@ public class UserNetworkElement extends NetworkElement {
 
     public void setDesiredLevel(double desiredLevel) {
         this.desiredLevel = desiredLevel;
+    }
+
+    @Override
+    public String toString() {
+        return "UserNetworkElement{" + "capacity=" + capacity + '}';
     }
 }

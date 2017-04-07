@@ -19,6 +19,9 @@ import org.jenetics.Phenotype;
 import org.jenetics.engine.Engine;
 import org.jenetics.engine.EvolutionResult;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import static org.jenetics.engine.EvolutionResult.toBestEvolutionResult;
 import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 import static org.jenetics.engine.limit.byFixedGeneration;
@@ -65,6 +68,12 @@ public class Evolution {
 
     public EvolutionResult iterate(int generations) {
         return GANetworkController.iterate(engine, generations);
+    }
+
+    public Evolution executors(int numberOfThreads) {
+        final ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
+        builder.executor(executor);
+        return this;
     }
 
     public Phenotype evolveToBestPhenotype(int generations) {

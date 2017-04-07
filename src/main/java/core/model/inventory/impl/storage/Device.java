@@ -30,4 +30,11 @@ public class Device {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return name + " (capacity=" + capacity + ", price=" + price + ')';
+    }
+    
+    
 }

@@ -9,4 +9,9 @@ public class EmptyElement extends NetworkElement {
     public EmptyElement() {
         this.capacity = 0.0;
     }
+
+    @Override
+    public String toString() {
+        return "EmptyElement{" + '}';
+    }
 }
