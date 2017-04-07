@@ -1,6 +1,3 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core.ga;
 
 import core.ga.facade.Evolution;
@@ -11,7 +8,6 @@ import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.ga.operators.fitness.FitnessTypes;
 import core.model.inventory.AbstractStorage;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
-import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
 import core.model.inventory.impl.storage.Device;
 import core.model.inventory.impl.storage.DoubleStorage;
@@ -82,7 +78,7 @@ public class EvolutionTest {
         // Arrange
         AbstractNetwork network = createNetwork(networkSize);
         AbstractStorage storage = createStorage();
-        Evolution evolution = (new Evolution(network, storage,FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.75))).builder();
+        Evolution evolution = (new Evolution(network, storage, FitnessTypes.RANDOM_WEIGHT_FITNESS.withFitnessVariable(0.75))).builder();
 
         // Act
         IAltererType crossover = CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.4);
@@ -154,6 +150,21 @@ public class EvolutionTest {
 
         // Assert
         assertTrue(generations >= result.getGeneration());
+    }
+
+    @Test
+    public void canEvolveBySteadyFitness() {
+        // Arrange
+        int generations = 2;
+        int threads = 10;
+
+        // Act
+        EvolutionResult result = evolution
+                .executors(threads)
+                .evolveBySteadyFitness(generations);
+
+        // Assert
+        assertNotNull(result);
     }
 
     private static AbstractStorage createStorage() {

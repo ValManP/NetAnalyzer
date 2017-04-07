@@ -21,6 +21,7 @@ import java.util.Random;
 
 import static org.junit.Assert.assertNotNull;
 
+@Ignore
 public class ExperimentTest {
     private int storageSize = 20;
     private int networkSize = 21;

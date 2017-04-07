@@ -1,15 +1,12 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core;
 
 import core.model.controllers.NetworkController;
-import core.model.inventory.impl.storage.Device;
-import core.model.network.impl.DoubleLink;
-import core.model.network.impl.DoubleNetwork;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
+import core.model.inventory.impl.storage.Device;
+import core.model.network.impl.DoubleLink;
+import core.model.network.impl.DoubleNetwork;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -69,5 +66,21 @@ public class NetworkControllerTest {
 
         // Assert
         assertEquals(expectedValue, actualValue, 0.01);
+    }
+
+    @Test
+    public void canGenerateNetwork() {
+        // Arrange
+        int layerSize = 100;
+        int layersCount = 100;
+        double minCapacity = 10.0;
+        double maxCapacity = 50.0;
+
+        // Act
+        int expectedSize = 10000;
+        DoubleNetwork network = NetworkController.generateNetwork(layerSize, layersCount, minCapacity, maxCapacity);
+
+        // Assert
+        assertEquals(expectedSize, network.getSize());
     }
 }

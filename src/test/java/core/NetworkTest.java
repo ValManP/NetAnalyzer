@@ -1,13 +1,12 @@
-/**
- * Created by Valerii Pozdiaev on 2017.
- */
 package core;
 
-import core.model.network.impl.DoubleLink;
-import core.model.network.impl.DoubleNetwork;
+import core.model.controllers.StorageController;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.SwitchNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
+import core.model.inventory.impl.storage.DoubleStorage;
+import core.model.network.impl.DoubleLink;
+import core.model.network.impl.DoubleNetwork;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -127,5 +126,22 @@ public class NetworkTest {
 
         // Assert
         assertEquals(expectedValue, network.getTraffic(0, 1), 0.01);
+    }
+
+    @Test
+    public void canGenerateStorage() {
+        // Arrange
+        int size = 10;
+        double minCapacity = 10.0;
+        double maxCapacity = 50.0;
+        double minPrice = 10.0;
+        double maxPrice = 50.0;
+
+        // Act
+        DoubleStorage storage = StorageController.getInstance()
+                .generateStorage(size, minCapacity, maxCapacity, minPrice, maxPrice);
+
+        // Assert
+        assertEquals(size, storage.getSize());
     }
 }
