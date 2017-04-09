@@ -47,4 +47,11 @@ public abstract class AbstractLink<TrafficType> {
     public void setDuplex(boolean duplex) {
         isDuplex = duplex;
     }
+
+    @Override
+    public String toString() {
+        return "AbstractLink{" + "isDuplex=" + isDuplex + ", capacity=" + capacity + ", reliability=" + reliability + ", traffic=" + traffic + '}';
+    }
+    
+    
 }

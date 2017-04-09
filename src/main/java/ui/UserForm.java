@@ -1,6 +1,5 @@
 package ui;
 
-import core.ga.facade.Evolution;
 import core.model.inventory.impl.storage.DoubleStorage;
 import core.model.network.impl.DoubleNetwork;
 
@@ -8,26 +7,31 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ *
  * @author VALERY-PC
  */
 public class UserForm extends javax.swing.JFrame {
+    // Frame
+    private static JFrame frame;
+    
     // Panels
     private static NetworkPanel networkPanel;
     private static GeneticPanel geneticPanel;
 
     // Entities
-    private static DoubleStorage storage = new DoubleStorage();
-    private static DoubleNetwork network = new DoubleNetwork();
-    private static Evolution evolution;
-
-
+    private DoubleStorage storage;
+    private DoubleNetwork network;
+    
+    
     /**
      * Creates new form USerForm
      */
     public UserForm() {
         initComponents();
-        this.networkPanel = new NetworkPanel(storage, network);
-        this.geneticPanel = new GeneticPanel(evolution, storage, network);
+        storage = new DoubleStorage();
+        network = new DoubleNetwork();
+        UserForm.networkPanel = new NetworkPanel(storage, network);
+        this.geneticPanel = new GeneticPanel(storage, network);
     }
 
     /**
@@ -40,27 +44,34 @@ public class UserForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel13 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        nextPreviousButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.window);
         setResizable(false);
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Next");
+        nextPreviousButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
+        nextPreviousButton.setText("Next");
+        nextPreviousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextPreviousButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
                 jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                                .addGap(0, 736, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addContainerGap(728, Short.MAX_VALUE)
+                                .addComponent(nextPreviousButton)
+                                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
                 jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nextPreviousButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -75,13 +86,27 @@ public class UserForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(485, Short.MAX_VALUE)
+                                .addContainerGap(538, Short.MAX_VALUE)
                                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nextPreviousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPreviousButtonActionPerformed
+        if (nextPreviousButton.getText().equals("Next")) {
+            frame.remove(networkPanel);
+            frame.add(geneticPanel, BorderLayout.PAGE_START);
+            frame.repaint();
+            nextPreviousButton.setText("Previous");
+        } else {
+            frame.remove(geneticPanel);
+            frame.add(networkPanel, BorderLayout.PAGE_START);
+            frame.repaint();
+            nextPreviousButton.setText("Next");
+        }
+    }//GEN-LAST:event_nextPreviousButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,7 +139,7 @@ public class UserForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JFrame frame = new UserForm();
+                frame = new UserForm();
                 frame.setLayout(new BorderLayout());
                 frame.setVisible(true);
                 frame.add(networkPanel, BorderLayout.PAGE_START);
@@ -124,7 +149,7 @@ public class UserForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JButton nextPreviousButton;
     // End of variables declaration//GEN-END:variables
 }

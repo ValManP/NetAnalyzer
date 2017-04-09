@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -28,14 +28,14 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="storageCreationPanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="networkCreationPanel" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="networkCreationPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="networkVisualizationPanel" max="32767" attributes="0"/>
                   <Component id="logPanel" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,7 +92,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="autoStorageCreationPanel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="manualStorageCreationPanel" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="manualStorageCreationPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -188,6 +188,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="removeDeviceButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Remove"/>
                   </Properties>
                   <Events>
@@ -201,9 +204,6 @@
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeDeviceComboBoxActionPerformed"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -231,47 +231,45 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="deviceNameLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="deviceNameTextField" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="addDeviceButton" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="deviceCapacityLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="deviceCapacityTextField" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="deviceCapacitySpinner" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="devicePriceLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="devicePriceTextField" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="devicePriceSpinner" min="-2" pref="73" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="addDeviceButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="addDeviceButton" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="deviceNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="deviceNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="deviceCapacityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="deviceCapacityTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="devicePriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="devicePriceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="deviceNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deviceNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="addDeviceButton" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="deviceCapacityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="devicePriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="deviceCapacitySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="devicePriceSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -291,22 +289,35 @@
                     <Property name="text" type="java.lang.String" value="Capacity:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="deviceCapacityTextField">
-                </Component>
                 <Component class="javax.swing.JLabel" name="devicePriceLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Price:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="devicePriceTextField">
-                </Component>
                 <Component class="javax.swing.JButton" name="addDeviceButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addDeviceButtonActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="deviceCapacitySpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="100.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="devicePriceSpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="1.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -334,38 +345,41 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="generateStorageButton" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="maxPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="minPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="maxCapacityLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="maxCapacityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="maxPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="minPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="minCapacityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="storageSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="maxPriceTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="maxCapacityTextField" alignment="0" pref="50" max="32767" attributes="0"/>
-                                          <Component id="minPriceTextField" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="minCapacityLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="minCapacityTextField" min="-2" pref="50" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="storageSizeLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="storageSizeTextField" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="storageSizeSpinner" pref="60" max="32767" attributes="0"/>
+                                  <Component id="minPriceSpinner" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="minCapacitySpinner" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="maxCapacitySpinner" max="32767" attributes="0"/>
+                                  <Component id="maxPriceSpinner" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="generateStorageButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -374,29 +388,30 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="minCapacityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="minCapacityTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minCapacitySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="maxCapacitySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="maxCapacityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="maxCapacityTextField" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="maxPriceTextField" alignment="3" max="32767" attributes="0"/>
+                          <Component id="maxPriceSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="maxPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="minPriceTextField" alignment="3" max="32767" attributes="0"/>
                           <Component id="minPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minPriceSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="storageSizeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="storageSizeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="storageSizeSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="generateStorageButton" min="-2" pref="23" max="-2" attributes="0"/>
@@ -406,8 +421,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="storageSizeTextField">
-            </Component>
             <Component class="javax.swing.JLabel" name="storageSizeLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Size:"/>
@@ -417,10 +430,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Min Capacity:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="minCapacityTextField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="minPriceTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="minPriceLabel">
               <Properties>
@@ -432,10 +441,6 @@
                 <Property name="text" type="java.lang.String" value="Max Capacity:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="maxCapacityTextField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="maxPriceTextField">
-            </Component>
             <Component class="javax.swing.JLabel" name="maxPriceLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Max Price:"/>
@@ -443,11 +448,49 @@
             </Component>
             <Component class="javax.swing.JButton" name="generateStorageButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Generate"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateStorageButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="maxCapacitySpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="100.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="minPriceSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="maxPriceSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="100.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="minCapacitySpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="storageSizeSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -472,7 +515,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="281" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -529,6 +572,7 @@
             <Component class="javax.swing.JTextArea" name="logTextArea">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
             </Component>
@@ -635,7 +679,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="neZLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="neZComboBox" max="32767" attributes="0"/>
+                                  <Component id="neZComboBox" min="-2" pref="121" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="neALabel" min="-2" max="-2" attributes="0"/>
@@ -694,6 +738,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="addLinkButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
                   <Events>
@@ -748,15 +795,15 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Component id="neTypeLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="neTypeComboBox" min="-2" pref="152" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Component id="neCapacityLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="neCapacityTextField" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="neCapacitySpinner" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="neNameLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -781,9 +828,9 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="neCapacityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="neCapacityTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="neNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="neNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="neCapacitySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="addNetworkElementButton" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
@@ -803,8 +850,6 @@
                     <Property name="text" type="java.lang.String" value="Capacity:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="neCapacityTextField">
-                </Component>
                 <Component class="javax.swing.JLabel" name="neNameLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Name:"/>
@@ -814,6 +859,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="addNetworkElementButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
                   <Events>
@@ -834,6 +882,13 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="neCapacitySpinner">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="20.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -858,33 +913,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="layerLengthLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="neMaxPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="neMinPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="neMaxPriceTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="layerLengthTextField" alignment="0" pref="50" max="32767" attributes="0"/>
-                                          <Component id="neMinPriceTextField" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="layersCountLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="layersCountTextField" pref="50" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="generateNetworkButton" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="layersCountLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="layersCountSpinner" min="-2" pref="49" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="neMaxCapacityLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="layerLengthLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="neMinPriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="layerSizeSpinner" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="neMaxPriceSpinner" alignment="1" pref="50" max="32767" attributes="0"/>
+                                  <Component id="neMinPriceSpinner" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -893,29 +944,29 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="layersCountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="layersCountTextField" alignment="3" max="32767" attributes="0"/>
+                          <Component id="layersCountSpinner" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="layerSizeSpinner" alignment="3" max="32767" attributes="0"/>
                           <Component id="layerLengthLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="layerLengthTextField" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="neMaxPriceTextField" alignment="3" max="32767" attributes="0"/>
-                          <Component id="neMaxPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="neMaxPriceSpinner" alignment="3" max="32767" attributes="0"/>
+                          <Component id="neMaxCapacityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="neMinPriceSpinner" alignment="3" max="32767" attributes="0"/>
                           <Component id="neMinPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="neMinPriceTextField" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="generateNetworkButton" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -926,13 +977,9 @@
                 <Property name="text" type="java.lang.String" value="Layer&apos;s Count:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="layersCountTextField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="neMinPriceTextField">
-            </Component>
             <Component class="javax.swing.JLabel" name="neMinPriceLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Min Price:"/>
+                <Property name="text" type="java.lang.String" value="Root Min Cap:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="layerLengthLabel">
@@ -940,22 +987,49 @@
                 <Property name="text" type="java.lang.String" value="Layer Length:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="layerLengthTextField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="neMaxPriceTextField">
-            </Component>
-            <Component class="javax.swing.JLabel" name="neMaxPriceLabel">
+            <Component class="javax.swing.JLabel" name="neMaxCapacityLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Max Price:"/>
+                <Property name="text" type="java.lang.String" value="Root Max Cap:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="generateNetworkButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Generate"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateNetworkButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="layersCountSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="layerSizeSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="neMaxPriceSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="neMinPriceSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="10.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

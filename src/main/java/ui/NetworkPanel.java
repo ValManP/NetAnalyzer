@@ -11,15 +11,18 @@ import core.model.inventory.impl.storage.Device;
 import core.model.inventory.impl.storage.DoubleStorage;
 import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
+import ui.tools.Logger;
+import ui.tools.UIValidator;
+import ui.tools.UIVisualizator;
 
 public class NetworkPanel extends javax.swing.JPanel {
-
+    private final Logger logger;
+    
     private DoubleStorage storage;
     private DoubleNetwork network;
 
     /**
      * Creates new form NetworkPanel
-     *
      * @param storage
      * @param network
      */
@@ -27,6 +30,7 @@ public class NetworkPanel extends javax.swing.JPanel {
         initComponents();
         this.storage = storage;
         this.network = network;
+        this.logger = Logger.getLogger(logTextArea);
     }
 
     /**
@@ -48,22 +52,22 @@ public class NetworkPanel extends javax.swing.JPanel {
         deviceNameLabel = new javax.swing.JLabel();
         deviceNameTextField = new javax.swing.JTextField();
         deviceCapacityLabel = new javax.swing.JLabel();
-        deviceCapacityTextField = new javax.swing.JTextField();
         devicePriceLabel = new javax.swing.JLabel();
-        devicePriceTextField = new javax.swing.JTextField();
         addDeviceButton = new javax.swing.JButton();
+        deviceCapacitySpinner = new javax.swing.JSpinner();
+        devicePriceSpinner = new javax.swing.JSpinner();
         autoStorageCreationPanel = new javax.swing.JPanel();
-        storageSizeTextField = new javax.swing.JTextField();
         storageSizeLabel = new javax.swing.JLabel();
         minCapacityLabel = new javax.swing.JLabel();
-        minCapacityTextField = new javax.swing.JTextField();
-        minPriceTextField = new javax.swing.JTextField();
         minPriceLabel = new javax.swing.JLabel();
         maxCapacityLabel = new javax.swing.JLabel();
-        maxCapacityTextField = new javax.swing.JTextField();
-        maxPriceTextField = new javax.swing.JTextField();
         maxPriceLabel = new javax.swing.JLabel();
         generateStorageButton = new javax.swing.JButton();
+        maxCapacitySpinner = new javax.swing.JSpinner();
+        minPriceSpinner = new javax.swing.JSpinner();
+        maxPriceSpinner = new javax.swing.JSpinner();
+        minCapacitySpinner = new javax.swing.JSpinner();
+        storageSizeSpinner = new javax.swing.JSpinner();
         networkVisualizationPanel = new javax.swing.JPanel();
         logPanel = new javax.swing.JPanel();
         logScrollPane = new javax.swing.JScrollPane();
@@ -80,21 +84,21 @@ public class NetworkPanel extends javax.swing.JPanel {
         addNetworkElementPanel = new javax.swing.JPanel();
         neTypeLabel = new javax.swing.JLabel();
         neCapacityLabel = new javax.swing.JLabel();
-        neCapacityTextField = new javax.swing.JTextField();
         neNameLabel = new javax.swing.JLabel();
         neNameTextField = new javax.swing.JTextField();
         addNetworkElementButton = new javax.swing.JButton();
         neTypeComboBox = new javax.swing.JComboBox<>();
+        neCapacitySpinner = new javax.swing.JSpinner();
         autoNetworkCreationPanel = new javax.swing.JPanel();
         layersCountLabel = new javax.swing.JLabel();
-        layersCountTextField = new javax.swing.JTextField();
-        neMinPriceTextField = new javax.swing.JTextField();
         neMinPriceLabel = new javax.swing.JLabel();
         layerLengthLabel = new javax.swing.JLabel();
-        layerLengthTextField = new javax.swing.JTextField();
-        neMaxPriceTextField = new javax.swing.JTextField();
-        neMaxPriceLabel = new javax.swing.JLabel();
+        neMaxCapacityLabel = new javax.swing.JLabel();
         generateNetworkButton = new javax.swing.JButton();
+        layersCountSpinner = new javax.swing.JSpinner();
+        layerSizeSpinner = new javax.swing.JSpinner();
+        neMaxPriceSpinner = new javax.swing.JSpinner();
+        neMinPriceSpinner = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -109,6 +113,7 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         removeDeviceLabel.setText("Devices:");
 
+        removeDeviceButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         removeDeviceButton.setText("Remove");
         removeDeviceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,11 +122,6 @@ public class NetworkPanel extends javax.swing.JPanel {
         });
 
         removeDeviceComboBox.setToolTipText("");
-        removeDeviceComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeDeviceComboBoxActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout removeDevicePanelLayout = new javax.swing.GroupLayout(removeDevicePanel);
         removeDevicePanel.setLayout(removeDevicePanelLayout);
@@ -156,6 +156,7 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         devicePriceLabel.setText("Price:");
 
+        addDeviceButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         addDeviceButton.setText("Add");
         addDeviceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,45 +164,48 @@ public class NetworkPanel extends javax.swing.JPanel {
             }
         });
 
+        deviceCapacitySpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, null, null, 1.0d));
+
+        devicePriceSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, null, null, 1.0d));
+
         javax.swing.GroupLayout addDevicePanelLayout = new javax.swing.GroupLayout(addDevicePanel);
         addDevicePanel.setLayout(addDevicePanelLayout);
         addDevicePanelLayout.setHorizontalGroup(
                 addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(addDevicePanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(addDevicePanelLayout.createSequentialGroup()
                                                 .addComponent(deviceNameLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(deviceNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(deviceNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(addDeviceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(addDevicePanelLayout.createSequentialGroup()
                                                 .addComponent(deviceCapacityLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(deviceCapacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(12, 12, 12)
+                                                .addComponent(deviceCapacitySpinner)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(devicePriceLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(devicePriceTextField)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addDeviceButton)
-                                .addContainerGap(12, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(devicePriceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
         addDevicePanelLayout.setVerticalGroup(
                 addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(addDevicePanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(addDeviceButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(addDevicePanelLayout.createSequentialGroup()
-                                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(deviceNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(deviceNameLabel))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(deviceCapacityLabel)
-                                                        .addComponent(deviceCapacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(devicePriceLabel)
-                                                        .addComponent(devicePriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(deviceNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(deviceNameLabel))
+                                        .addComponent(addDeviceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(addDevicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(deviceCapacityLabel)
+                                        .addComponent(devicePriceLabel)
+                                        .addComponent(deviceCapacitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(devicePriceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -235,12 +239,23 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         maxPriceLabel.setText("Max Price:");
 
+        generateStorageButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         generateStorageButton.setText("Generate");
         generateStorageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateStorageButtonActionPerformed(evt);
             }
         });
+
+        maxCapacitySpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, null, null, 1.0d));
+
+        minPriceSpinner.setModel(new javax.swing.SpinnerNumberModel(10.0d, null, null, 1.0d));
+
+        maxPriceSpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, null, null, 1.0d));
+
+        minCapacitySpinner.setModel(new javax.swing.SpinnerNumberModel(10.0d, null, null, 1.0d));
+
+        storageSizeSpinner.setModel(new javax.swing.SpinnerNumberModel(10, null, null, 1));
 
         javax.swing.GroupLayout autoStorageCreationPanelLayout = new javax.swing.GroupLayout(autoStorageCreationPanel);
         autoStorageCreationPanel.setLayout(autoStorageCreationPanelLayout);
@@ -249,52 +264,54 @@ public class NetworkPanel extends javax.swing.JPanel {
                         .addGroup(autoStorageCreationPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(generateStorageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(autoStorageCreationPanelLayout.createSequentialGroup()
-                                                .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(autoStorageCreationPanelLayout.createSequentialGroup()
+                                                                        .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(maxPriceLabel)
+                                                                                .addComponent(minPriceLabel))
+                                                                        .addGap(25, 25, 25))
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autoStorageCreationPanelLayout.createSequentialGroup()
+                                                                        .addComponent(maxCapacityLabel)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                                         .addGroup(autoStorageCreationPanelLayout.createSequentialGroup()
                                                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(maxCapacityLabel)
-                                                                        .addComponent(maxPriceLabel)
-                                                                        .addComponent(minPriceLabel))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(maxPriceTextField)
-                                                                        .addComponent(maxCapacityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                                                        .addComponent(minPriceTextField)))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, autoStorageCreationPanelLayout.createSequentialGroup()
-                                                                .addComponent(minCapacityLabel)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(minCapacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, autoStorageCreationPanelLayout.createSequentialGroup()
-                                                                .addComponent(storageSizeLabel)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(storageSizeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(generateStorageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                        .addComponent(minCapacityLabel)
+                                                                        .addComponent(storageSizeLabel))
+                                                                .addGap(14, 14, 14)))
+                                                .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(storageSizeSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                                        .addComponent(minPriceSpinner, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(minCapacitySpinner, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(maxCapacitySpinner)
+                                                        .addComponent(maxPriceSpinner, javax.swing.GroupLayout.Alignment.LEADING))))
                                 .addContainerGap())
         );
         autoStorageCreationPanelLayout.setVerticalGroup(
                 autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(autoStorageCreationPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(minCapacityLabel)
-                                        .addComponent(minCapacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(minCapacitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(maxCapacityLabel)
-                                        .addComponent(maxCapacityTextField))
+                                        .addComponent(maxCapacitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(maxCapacityLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(maxPriceTextField)
+                                        .addComponent(maxPriceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(maxPriceLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(minPriceTextField)
-                                        .addComponent(minPriceLabel))
+                                        .addComponent(minPriceLabel)
+                                        .addComponent(minPriceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(autoStorageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(storageSizeLabel)
-                                        .addComponent(storageSizeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(storageSizeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(generateStorageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
@@ -315,7 +332,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                         .addGroup(storageCreationPanelLayout.createSequentialGroup()
                                 .addGroup(storageCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(autoStorageCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(manualStorageCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                        .addComponent(manualStorageCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -326,7 +343,7 @@ public class NetworkPanel extends javax.swing.JPanel {
         networkVisualizationPanel.setLayout(networkVisualizationPanelLayout);
         networkVisualizationPanelLayout.setHorizontalGroup(
                 networkVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 281, Short.MAX_VALUE)
         );
         networkVisualizationPanelLayout.setVerticalGroup(
                 networkVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,6 +354,7 @@ public class NetworkPanel extends javax.swing.JPanel {
         logPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Log"));
 
         logTextArea.setColumns(20);
+        logTextArea.setLineWrap(true);
         logTextArea.setRows(5);
         logScrollPane.setViewportView(logTextArea);
 
@@ -370,6 +388,7 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         neAComboBox.setToolTipText("");
 
+        addLinkButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         addLinkButton.setText("Add");
         addLinkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,7 +413,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                                         .addGroup(addLinkPanelLayout.createSequentialGroup()
                                                 .addComponent(neZLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(neZComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(neZComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(addLinkPanelLayout.createSequentialGroup()
                                                 .addComponent(neALabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -431,6 +450,7 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         neNameLabel.setText("Name:");
 
+        addNetworkElementButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         addNetworkElementButton.setText("Add");
         addNetworkElementButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,6 +459,8 @@ public class NetworkPanel extends javax.swing.JPanel {
         });
 
         neTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Root", "User", "Switch", "Empty Element"}));
+
+        neCapacitySpinner.setModel(new javax.swing.SpinnerNumberModel(20.0d, null, null, 1.0d));
 
         javax.swing.GroupLayout addNetworkElementPanelLayout = new javax.swing.GroupLayout(addNetworkElementPanel);
         addNetworkElementPanel.setLayout(addNetworkElementPanelLayout);
@@ -454,7 +476,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                                         .addGroup(addNetworkElementPanelLayout.createSequentialGroup()
                                                 .addComponent(neCapacityLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(neCapacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(neCapacitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(neNameLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -474,9 +496,9 @@ public class NetworkPanel extends javax.swing.JPanel {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(addNetworkElementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(neCapacityLabel)
-                                                        .addComponent(neCapacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(neNameLabel)
-                                                        .addComponent(neNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(neNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(neCapacitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addComponent(addNetworkElementButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -503,18 +525,27 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         layersCountLabel.setText("Layer's Count:");
 
-        neMinPriceLabel.setText("Min Price:");
+        neMinPriceLabel.setText("Root Min Cap:");
 
         layerLengthLabel.setText("Layer Length:");
 
-        neMaxPriceLabel.setText("Max Price:");
+        neMaxCapacityLabel.setText("Root Max Cap:");
 
+        generateNetworkButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         generateNetworkButton.setText("Generate");
         generateNetworkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateNetworkButtonActionPerformed(evt);
             }
         });
+
+        layersCountSpinner.setModel(new javax.swing.SpinnerNumberModel(10, null, null, 1));
+
+        layerSizeSpinner.setModel(new javax.swing.SpinnerNumberModel(10, null, null, 1));
+
+        neMaxPriceSpinner.setModel(new javax.swing.SpinnerNumberModel(10.0d, null, null, 1.0d));
+
+        neMinPriceSpinner.setModel(new javax.swing.SpinnerNumberModel(10.0d, null, null, 1.0d));
 
         javax.swing.GroupLayout autoNetworkCreationPanelLayout = new javax.swing.GroupLayout(autoNetworkCreationPanel);
         autoNetworkCreationPanel.setLayout(autoNetworkCreationPanelLayout);
@@ -523,48 +554,46 @@ public class NetworkPanel extends javax.swing.JPanel {
                         .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(generateNetworkButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
-                                                .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
-                                                                .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(layerLengthLabel)
-                                                                        .addComponent(neMaxPriceLabel)
-                                                                        .addComponent(neMinPriceLabel))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(neMaxPriceTextField)
-                                                                        .addComponent(layerLengthTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                                                        .addComponent(neMinPriceTextField)))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, autoNetworkCreationPanelLayout.createSequentialGroup()
-                                                                .addComponent(layersCountLabel)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(layersCountTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(generateNetworkButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(layersCountLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(layersCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 3, Short.MAX_VALUE))
+                                        .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
+                                                .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(neMaxCapacityLabel)
+                                                        .addComponent(layerLengthLabel)
+                                                        .addComponent(neMinPriceLabel))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(layerSizeSpinner, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(neMaxPriceSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                                        .addComponent(neMinPriceSpinner, javax.swing.GroupLayout.Alignment.TRAILING))))
                                 .addContainerGap())
         );
         autoNetworkCreationPanelLayout.setVerticalGroup(
                 autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(layersCountLabel)
-                                        .addComponent(layersCountTextField))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(layersCountSpinner))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(layerLengthLabel)
-                                        .addComponent(layerLengthTextField))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(layerSizeSpinner)
+                                        .addComponent(layerLengthLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(neMaxPriceTextField)
-                                        .addComponent(neMaxPriceLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(neMaxPriceSpinner)
+                                        .addComponent(neMaxCapacityLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(neMinPriceLabel)
-                                        .addComponent(neMinPriceTextField))
-                                .addGap(18, 18, 18)
+                                        .addComponent(neMinPriceSpinner)
+                                        .addComponent(neMinPriceLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(generateNetworkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout networkCreationPanelLayout = new javax.swing.GroupLayout(networkCreationPanel);
@@ -591,12 +620,12 @@ public class NetworkPanel extends javax.swing.JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(storageCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(networkCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                        .addComponent(networkCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+                                .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -617,81 +646,98 @@ public class NetworkPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addDeviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeviceButtonActionPerformed
-        Device device = new Device(
-                deviceNameTextField.getText(),
-                Double.valueOf(deviceCapacityTextField.getText()),
-                Double.valueOf(devicePriceTextField.getText()));
-        storage.addElement(device);
-        removeDeviceComboBox.addItem(device.toString());
+        if (UIValidator.getInstance().validate(logger, deviceNameTextField, deviceCapacitySpinner, devicePriceSpinner)) {
+            Device device = new Device(
+                    deviceNameTextField.getText(),
+                    Double.valueOf(deviceCapacitySpinner.getValue().toString()),
+                    Double.valueOf(devicePriceSpinner.getValue().toString()));
+            storage.addElement(device);
+            removeDeviceComboBox.addItem(device.toString());
+            logger.trace("Device is added successfully");
+        }
     }//GEN-LAST:event_addDeviceButtonActionPerformed
 
     private void removeDeviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeviceButtonActionPerformed
-        storage.removeElement(removeDeviceComboBox.getSelectedIndex());
-        removeDeviceComboBox.remove(removeDeviceComboBox.getSelectedIndex());
+        if (UIValidator.getInstance().validate(logger, removeDeviceComboBox)) {
+            storage.removeElement(removeDeviceComboBox.getSelectedIndex());
+            int indexToRemove = removeDeviceComboBox.getSelectedIndex();
+            removeDeviceComboBox.removeItemAt(indexToRemove);
+            logger.trace("Device is removed");
+        }
     }//GEN-LAST:event_removeDeviceButtonActionPerformed
 
-    private void removeDeviceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeviceComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeDeviceComboBoxActionPerformed
-
-    private void generateStorageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateStorageButtonActionPerformed
-        storage = StorageController.getInstance().generateStorage(
-                Integer.valueOf(storageSizeTextField.getText()),
-                Double.valueOf(minCapacityTextField.getText()),
-                Double.valueOf(maxCapacityTextField.getText()),
-                Double.valueOf(minPriceTextField.getText()),
-                Double.valueOf(maxPriceTextField.getText())
-        );
-    }//GEN-LAST:event_generateStorageButtonActionPerformed
-
     private void addNetworkElementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNetworkElementButtonActionPerformed
-        NetworkElement element = null;
-        switch (neTypeComboBox.getSelectedItem().toString()) {
-            case "Root": {
-                element = new RootNetworkElement(Double.valueOf(neCapacityTextField.getText()));
-                network.addRoot(element);
-                break;
+        if (UIValidator.getInstance().validate(logger, neTypeComboBox, neCapacitySpinner, neNameTextField)) {
+            NetworkElement element = null;
+            switch (neTypeComboBox.getSelectedItem().toString()) {
+                case "Root": {
+                    element = new RootNetworkElement(Double.valueOf(neCapacitySpinner.getValue().toString()));
+                    network.addRoot(element);
+                    break;
+                }
+                case "User": {
+                    element = new UserNetworkElement(Double.valueOf(neCapacitySpinner.getValue().toString()), 0);
+                    network.addUser(element);
+                    break;
+                }
+                case "Switch": {
+                    element = new SwitchNetworkElement(
+                            neNameTextField.getText(),
+                            Double.valueOf(neCapacitySpinner.getValue().toString()),
+                            100
+                    );
+                    network.addSwitch(element);
+                    break;
+                }
+                case "Empty Element": {
+                    element = new EmptyElement();
+                    network.addEmptyElement(new EmptyElement());
+                    break;
+                }
             }
-            case "User": {
-                element = new UserNetworkElement(Double.valueOf(neCapacityTextField.getText()), 0);
-                network.addUser(element);
-                break;
-            }
-            case "Switch": {
-                element = new SwitchNetworkElement(
-                        neNameTextField.getText(),
-                        Double.valueOf(neCapacityTextField.getText()),
-                        100
-                );
-                network.addSwitch(element);
-                break;
-            }
-            case "Empty Element": {
-                element = new EmptyElement();
-                network.addEmptyElement(new EmptyElement());
-                break;
-            }
+            logger.trace("NE is added successfully");
+            UIVisualizator.getInstance().paint(network, networkVisualizationPanel);
+            neAComboBox.addItem(element.toString());
+            neZComboBox.addItem(element.toString());
         }
-        neAComboBox.addItem(element.toString());
-        neZComboBox.addItem(element.toString());
     }//GEN-LAST:event_addNetworkElementButtonActionPerformed
 
     private void addLinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLinkButtonActionPerformed
-        network.addLink(
-                new DoubleLink(isDuplexCheckBox.isSelected(), 0.0, 0.0, 0.0),
-                neAComboBox.getSelectedIndex(),
-                neZComboBox.getSelectedIndex()
-        );
+        if (UIValidator.getInstance().validate(logger, neAComboBox, neZComboBox)) {
+            network.addLink(
+                    new DoubleLink(isDuplexCheckBox.isSelected(), 0.0, 0.0, 0.0),
+                    neAComboBox.getSelectedIndex(),
+                    neZComboBox.getSelectedIndex()
+            );
+            logger.trace("Link is added successfully");
+            UIVisualizator.getInstance().paint(network, networkVisualizationPanel);
+        }
     }//GEN-LAST:event_addLinkButtonActionPerformed
 
     private void generateNetworkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateNetworkButtonActionPerformed
-        network = NetworkController.generateNetwork(
-                Integer.valueOf(layerLengthTextField.getText()),
-                Integer.valueOf(layersCountTextField.getText()),
-                Double.valueOf(neMinPriceTextField.getText()),
-                Double.valueOf(neMaxPriceTextField.getText())
-        );
+        if (UIValidator.getInstance().validate(logger, layerSizeSpinner, layersCountSpinner, neMinPriceSpinner, neMaxPriceSpinner)) {
+            NetworkController.generateNetwork(network,
+                    Integer.valueOf(layerSizeSpinner.getValue().toString()),
+                    Integer.valueOf(layersCountSpinner.getValue().toString()),
+                    Double.valueOf(neMinPriceSpinner.getValue().toString()),
+                    Double.valueOf(neMaxPriceSpinner.getValue().toString())
+            );
+            logger.trace("Network is generated successfully");
+        }
     }//GEN-LAST:event_generateNetworkButtonActionPerformed
+
+    private void generateStorageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateStorageButtonActionPerformed
+        if (UIValidator.getInstance().validate(logger, storageSizeSpinner, minCapacitySpinner, maxCapacitySpinner, minPriceSpinner, maxPriceSpinner)) {
+            StorageController.getInstance().generateStorage(storage,
+                    Integer.valueOf(storageSizeSpinner.getValue().toString()),
+                    Double.valueOf(minCapacitySpinner.getValue().toString()),
+                    Double.valueOf(maxCapacitySpinner.getValue().toString()),
+                    Double.valueOf(minPriceSpinner.getValue().toString()),
+                    Double.valueOf(maxPriceSpinner.getValue().toString())
+            );
+            logger.trace("Storage is generated successfully");
+        }
+    }//GEN-LAST:event_generateStorageButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -704,39 +750,39 @@ public class NetworkPanel extends javax.swing.JPanel {
     private javax.swing.JPanel autoNetworkCreationPanel;
     private javax.swing.JPanel autoStorageCreationPanel;
     private javax.swing.JLabel deviceCapacityLabel;
-    private javax.swing.JTextField deviceCapacityTextField;
+    private javax.swing.JSpinner deviceCapacitySpinner;
     private javax.swing.JLabel deviceNameLabel;
     private javax.swing.JTextField deviceNameTextField;
     private javax.swing.JLabel devicePriceLabel;
-    private javax.swing.JTextField devicePriceTextField;
+    private javax.swing.JSpinner devicePriceSpinner;
     private javax.swing.JButton generateNetworkButton;
     private javax.swing.JButton generateStorageButton;
     private javax.swing.JCheckBox isDuplexCheckBox;
     private javax.swing.JLabel layerLengthLabel;
-    private javax.swing.JTextField layerLengthTextField;
+    private javax.swing.JSpinner layerSizeSpinner;
     private javax.swing.JLabel layersCountLabel;
-    private javax.swing.JTextField layersCountTextField;
+    private javax.swing.JSpinner layersCountSpinner;
     private javax.swing.JPanel logPanel;
     private javax.swing.JScrollPane logScrollPane;
     private javax.swing.JTextArea logTextArea;
     private javax.swing.JPanel manualNetworkCreationPanel;
     private javax.swing.JPanel manualStorageCreationPanel;
     private javax.swing.JLabel maxCapacityLabel;
-    private javax.swing.JTextField maxCapacityTextField;
+    private javax.swing.JSpinner maxCapacitySpinner;
     private javax.swing.JLabel maxPriceLabel;
-    private javax.swing.JTextField maxPriceTextField;
+    private javax.swing.JSpinner maxPriceSpinner;
     private javax.swing.JLabel minCapacityLabel;
-    private javax.swing.JTextField minCapacityTextField;
+    private javax.swing.JSpinner minCapacitySpinner;
     private javax.swing.JLabel minPriceLabel;
-    private javax.swing.JTextField minPriceTextField;
+    private javax.swing.JSpinner minPriceSpinner;
     private javax.swing.JComboBox<String> neAComboBox;
     private javax.swing.JLabel neALabel;
     private javax.swing.JLabel neCapacityLabel;
-    private javax.swing.JTextField neCapacityTextField;
-    private javax.swing.JLabel neMaxPriceLabel;
-    private javax.swing.JTextField neMaxPriceTextField;
+    private javax.swing.JSpinner neCapacitySpinner;
+    private javax.swing.JLabel neMaxCapacityLabel;
+    private javax.swing.JSpinner neMaxPriceSpinner;
     private javax.swing.JLabel neMinPriceLabel;
-    private javax.swing.JTextField neMinPriceTextField;
+    private javax.swing.JSpinner neMinPriceSpinner;
     private javax.swing.JLabel neNameLabel;
     private javax.swing.JTextField neNameTextField;
     private javax.swing.JComboBox<String> neTypeComboBox;
@@ -751,6 +797,6 @@ public class NetworkPanel extends javax.swing.JPanel {
     private javax.swing.JPanel removeDevicePanel;
     private javax.swing.JPanel storageCreationPanel;
     private javax.swing.JLabel storageSizeLabel;
-    private javax.swing.JTextField storageSizeTextField;
+    private javax.swing.JSpinner storageSizeSpinner;
     // End of variables declaration//GEN-END:variables
 }

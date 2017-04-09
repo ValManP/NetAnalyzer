@@ -27,6 +27,10 @@ public abstract class AbstractNetwork<TrafficType, NetworkElement> {
         networkElements.set(position, hub);
     }
 
+    public void addEmptyElement(NetworkElement hub, int position) {
+        networkElements.set(position, hub);
+    }
+
     public void removeRoot(NetworkElement root) {
         roots.remove(root);
     }

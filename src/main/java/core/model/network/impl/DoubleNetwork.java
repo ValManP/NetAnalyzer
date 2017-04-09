@@ -104,11 +104,21 @@ public class DoubleNetwork extends AbstractNetwork<Double, NetworkElement> {
     }
 
     private void increaseLinksMatrix() {
+        networkElements.add(null);
         AbstractLink[][] newLinksMatrix = new AbstractLink[this.size][this.size];
         for (int i = 0; i < this.size - 1; i++) {
             newLinksMatrix[i] = Arrays.copyOf(linksMatrix[i], this.size);
         }
 
         linksMatrix = newLinksMatrix;
+    }
+
+    public void resize(int size) {
+        this.size = size;
+        linksMatrix = new DoubleLink[size][size];
+        networkElements = Stream.generate(EmptyElement::new).limit(size).collect(Collectors.toList());
+        roots = new ArrayList<>();
+        switches = new ArrayList<>();
+        users = new ArrayList<>();
     }
 }

@@ -89,8 +89,8 @@ public class NetworkController {
         return networkArray;
     }
 
-    public static DoubleNetwork generateNetwork(int layerSize, int layersCount, double minCapacity, double maxCapacity) {
-        DoubleNetwork network = new DoubleNetwork(layerSize * layersCount);
+    public static void generateNetwork(DoubleNetwork network, int layerSize, int layersCount, double minCapacity, double maxCapacity) {
+        network.resize(layerSize * layersCount);
         Random random = new Random();
         double randomValue = 0;
 
@@ -102,7 +102,7 @@ public class NetworkController {
 
         for (int row = 1; row < layersCount - 1; row++) {
             for (int col = 0; col < layerSize; col++) {
-                network.addSwitch(new EmptyElement(), row * layerSize + col);
+                network.addEmptyElement(new EmptyElement(), row * layerSize + col);
                 for (int i = 0; i < layerSize; i++) {
                     network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0),
                             (row - 1) * layerSize + i,
@@ -120,7 +120,5 @@ public class NetworkController {
                         (layersCount - 1) * layerSize + col);
             }
         }
-
-        return network;
     }
 }

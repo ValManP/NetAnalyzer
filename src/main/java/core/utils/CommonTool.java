@@ -15,4 +15,8 @@ public class CommonTool {
     public static boolean isExist(Object object) {
         return !(object == null);
     }
+
+    public static boolean isNotNull(String str) {
+        return (str != "") && isExist(str);
+    }
 }

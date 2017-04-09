@@ -15,16 +15,13 @@ public class StorageController {
         return instance;
     }
 
-    public DoubleStorage generateStorage(int storageSize, double minCapacity, double maxCapacity,
-                                         double minPrice, double maxPrice) {
-        DoubleStorage storage = new DoubleStorage();
+    public void generateStorage(DoubleStorage storage, int storageSize, double minCapacity, double maxCapacity,
+                                double minPrice, double maxPrice) {
         Random random = new Random();
 
         for (int i = 0; i < storageSize; ++i) {
             storage.addElement(new Device("device#" + i, (maxCapacity - minCapacity) * random.nextDouble() + minCapacity,
                     (maxPrice - minPrice) * random.nextDouble() + minPrice));
         }
-
-        return storage;
-    }
+    } 
 }
