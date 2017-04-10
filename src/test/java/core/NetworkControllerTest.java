@@ -78,7 +78,8 @@ public class NetworkControllerTest {
 
         // Act
         int expectedSize = 10000;
-        DoubleNetwork network = NetworkController.generateNetwork(layerSize, layersCount, minCapacity, maxCapacity);
+        DoubleNetwork network = new DoubleNetwork();
+        NetworkController.generateNetwork(network, layerSize, layersCount, minCapacity, maxCapacity);
 
         // Assert
         assertEquals(expectedSize, network.getSize());

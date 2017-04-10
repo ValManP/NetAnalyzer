@@ -6,6 +6,8 @@ import core.ga.operators.factories.alterer.types.IAltererType;
 import core.ga.operators.factories.alterer.types.MutatorTypes;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
 import core.ga.operators.fitness.FitnessTypes;
+import core.model.controllers.NetworkController;
+import core.model.controllers.StorageController;
 import core.model.inventory.AbstractStorage;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
@@ -162,6 +164,31 @@ public class EvolutionTest {
         EvolutionResult result = evolution
                 .executors(threads)
                 .evolveBySteadyFitness(generations);
+
+        // Assert
+        assertNotNull(result);
+    }
+
+    @Test
+    public void canEvolveWithLargeNet() {
+        // Arrange
+        int generations = 3;
+
+        DoubleNetwork largeNetwork = new DoubleNetwork();
+        NetworkController.generateNetwork(largeNetwork, 10, 10, 150, 300);
+        DoubleStorage largeStorage = new DoubleStorage();
+        StorageController.getInstance().generateStorage(largeStorage, 100, 100, 250, 100, 300);
+
+        Evolution evolution = (new Evolution(largeNetwork, largeStorage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.5)))
+                .builder()
+                .alterer(CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01))
+                .selector(SelectorTypes.TOURNAMENT_SELECTOR)
+                .initialPopulation(10)
+                .buildEngine();
+
+        // Act
+        EvolutionResult result = evolution
+                .evolve(generations);
 
         // Assert
         assertNotNull(result);

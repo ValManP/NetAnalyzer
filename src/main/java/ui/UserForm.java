@@ -48,6 +48,7 @@ public class UserForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.window);
+        setPreferredSize(new java.awt.Dimension(960, 730));
         setResizable(false);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -86,7 +87,7 @@ public class UserForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(538, Short.MAX_VALUE)
+                                .addContainerGap(764, Short.MAX_VALUE)
                                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );

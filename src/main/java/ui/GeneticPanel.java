@@ -10,6 +10,9 @@ import core.model.network.impl.DoubleNetwork;
 import org.jenetics.Phenotype;
 import org.jenetics.engine.EvolutionResult;
 import ui.tools.Logger;
+import ui.tools.UIVisualizator;
+
+import java.awt.*;
 
 public class GeneticPanel extends javax.swing.JPanel {
     private final Logger logger;
@@ -20,7 +23,6 @@ public class GeneticPanel extends javax.swing.JPanel {
     
     /**
      * Creates new form GeneticPanel
-     * @param evolution
      * @param storage
      * @param network
      */
@@ -124,7 +126,7 @@ public class GeneticPanel extends javax.swing.JPanel {
                                                         .addComponent(numberOfThreadsLabel)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(numberOfThreadsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(221, Short.MAX_VALUE))
         );
         manualRunPanelLayout.setVerticalGroup(
                 manualRunPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,16 +319,17 @@ public class GeneticPanel extends javax.swing.JPanel {
 
         populationVisualizationPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
         populationVisualizationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Population"));
+        populationVisualizationPanel.setPreferredSize(new java.awt.Dimension(293, 280));
 
         javax.swing.GroupLayout populationVisualizationPanelLayout = new javax.swing.GroupLayout(populationVisualizationPanel);
         populationVisualizationPanel.setLayout(populationVisualizationPanelLayout);
         populationVisualizationPanelLayout.setHorizontalGroup(
                 populationVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 410, Short.MAX_VALUE)
         );
         populationVisualizationPanelLayout.setVerticalGroup(
                 populationVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 260, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
         );
 
         logPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
@@ -343,14 +346,14 @@ public class GeneticPanel extends javax.swing.JPanel {
                 logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(logPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                .addComponent(logScrollPane)
                                 .addContainerGap())
         );
         logPanelLayout.setVerticalGroup(
                 logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(logPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                                 .addContainerGap())
         );
 
@@ -359,29 +362,29 @@ public class GeneticPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(gaConfigurationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(runGAPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(gaConfigurationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(runGAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
                                         .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(gaConfigurationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(runGAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(gaConfigurationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(runGAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -401,6 +404,8 @@ public class GeneticPanel extends javax.swing.JPanel {
                 .initialPopulation(Integer.valueOf(initialPopulationTextField.getText()))
                 .buildEngine();
         logger.trace("Evolution Engine is created");
+
+        populationVisualizationPanel.setLayout(new BorderLayout());
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
@@ -433,7 +438,10 @@ public class GeneticPanel extends javax.swing.JPanel {
                 break;
             }
         }
-        logger.trace("Result" + ((result == null) ? phenotype.toString() : result.toString()));
+        if (result != null) {
+            UIVisualizator.getInstance().paintChart(network, storage, result, populationVisualizationPanel);
+        }
+        logger.trace("Result: " + ((result == null) ? phenotype.toString() : result.toString()));
     }//GEN-LAST:event_runButtonActionPerformed
 
 

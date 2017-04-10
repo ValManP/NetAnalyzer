@@ -3,6 +3,8 @@ package experiments;
 import core.ga.operators.factories.alterer.types.CrossoverTypes;
 import core.ga.operators.factories.alterer.types.MutatorTypes;
 import core.ga.operators.factories.alterer.types.SelectorTypes;
+import core.model.controllers.NetworkController;
+import core.model.controllers.StorageController;
 import core.model.inventory.AbstractStorage;
 import core.model.inventory.impl.networkelement.RootNetworkElement;
 import core.model.inventory.impl.networkelement.UserNetworkElement;
@@ -169,6 +171,28 @@ public class ExperimentTest {
                         CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01),
                         null, 5, 3),
                 generateFileName("convergenceTournament")));
+
+        // Act
+        executor.process();
+
+        // Assert
+        assertNotNull(executor);
+    }
+
+    @Test
+    public void canExecuteExperimentsWithLargeNetwork() {
+        // Arrange
+        ExperimentExecutor executor = new ExperimentExecutor();
+        DoubleNetwork largeNetwork = new DoubleNetwork();
+        NetworkController.generateNetwork(largeNetwork, 10, 10, 150, 300);
+        DoubleStorage largeStorage = new DoubleStorage();
+        StorageController.getInstance().generateStorage(largeStorage, 50, 100, 250, 100, 300);
+
+        executor.addExperiment(new CrossoverExperiment(
+                new ExperimentParameters(largeNetwork, largeStorage, 0.1, 1,
+                        null, MutatorTypes.MUTATOR.withProbability(0.05),
+                        SelectorTypes.TOURNAMENT_SELECTOR, 5, 3),
+                generateFileName("largeCrossover")));
 
         // Act
         executor.process();

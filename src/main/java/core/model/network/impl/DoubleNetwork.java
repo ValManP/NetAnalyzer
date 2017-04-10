@@ -69,9 +69,10 @@ public class DoubleNetwork extends AbstractNetwork<Double, NetworkElement> {
     }
 
     public void addEmptyElement(NetworkElement empty) {
+        empty.setName("Empty" + this.size);
         this.size++;
         increaseLinksMatrix();
-        networkElements.add(empty);
+        addEmptyElement(empty, this.size - 1);
     }
     
     @Override

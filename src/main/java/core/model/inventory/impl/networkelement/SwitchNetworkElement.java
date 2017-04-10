@@ -43,9 +43,4 @@ public class SwitchNetworkElement extends NetworkElement {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    @Override
-    public String toString() {
-        return "SwitchNetworkElement{" + "devices=" + devices + ", price=" + price + '}';
-    }
 }

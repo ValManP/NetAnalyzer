@@ -10,16 +10,15 @@ public class UserNetworkElement extends NetworkElement {
         this.desiredLevel = desiredLevel;
     }
 
+    public UserNetworkElement(String name, double capacity) {
+        super(name, capacity);
+    }
+
     public double getDesiredLevel() {
         return desiredLevel;
     }
 
     public void setDesiredLevel(double desiredLevel) {
         this.desiredLevel = desiredLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "UserNetworkElement{" + "capacity=" + capacity + '}';
     }
 }

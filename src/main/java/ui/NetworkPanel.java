@@ -15,6 +15,8 @@ import ui.tools.Logger;
 import ui.tools.UIValidator;
 import ui.tools.UIVisualizator;
 
+import java.awt.*;
+
 public class NetworkPanel extends javax.swing.JPanel {
     private final Logger logger;
     
@@ -31,6 +33,7 @@ public class NetworkPanel extends javax.swing.JPanel {
         this.storage = storage;
         this.network = network;
         this.logger = Logger.getLogger(logTextArea);
+        networkVisualizationPanel.setLayout(new BorderLayout());
     }
 
     /**
@@ -338,16 +341,17 @@ public class NetworkPanel extends javax.swing.JPanel {
 
         networkVisualizationPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
         networkVisualizationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Network"));
+        networkVisualizationPanel.setPreferredSize(new java.awt.Dimension(300, 300));
 
         javax.swing.GroupLayout networkVisualizationPanelLayout = new javax.swing.GroupLayout(networkVisualizationPanel);
         networkVisualizationPanel.setLayout(networkVisualizationPanelLayout);
         networkVisualizationPanelLayout.setHorizontalGroup(
                 networkVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 281, Short.MAX_VALUE)
+                        .addGap(0, 439, Short.MAX_VALUE)
         );
         networkVisualizationPanelLayout.setVerticalGroup(
                 networkVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 281, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
         );
 
         logPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
@@ -364,14 +368,14 @@ public class NetworkPanel extends javax.swing.JPanel {
                 logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(logPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                .addComponent(logScrollPane)
                                 .addContainerGap())
         );
         logPanelLayout.setVerticalGroup(
                 logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(logPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(logScrollPane)
+                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                                 .addContainerGap())
         );
 
@@ -617,29 +621,33 @@ public class NetworkPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(storageCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(networkCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(13, 13, 13))
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(13, 13, 13))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(storageCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(networkCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap())))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(storageCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(networkCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(networkCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleName("networkPanel");
@@ -671,12 +679,12 @@ public class NetworkPanel extends javax.swing.JPanel {
             NetworkElement element = null;
             switch (neTypeComboBox.getSelectedItem().toString()) {
                 case "Root": {
-                    element = new RootNetworkElement(Double.valueOf(neCapacitySpinner.getValue().toString()));
+                    element = new RootNetworkElement(neNameTextField.getText(), Double.valueOf(neCapacitySpinner.getValue().toString()));
                     network.addRoot(element);
                     break;
                 }
                 case "User": {
-                    element = new UserNetworkElement(Double.valueOf(neCapacitySpinner.getValue().toString()), 0);
+                    element = new UserNetworkElement(neNameTextField.getText(), Double.valueOf(neCapacitySpinner.getValue().toString()));
                     network.addUser(element);
                     break;
                 }
@@ -691,13 +699,13 @@ public class NetworkPanel extends javax.swing.JPanel {
                 }
                 case "Empty Element": {
                     element = new EmptyElement();
-                    network.addEmptyElement(new EmptyElement());
+                    network.addEmptyElement(element);
                     break;
                 }
             }
             logger.trace("NE is added successfully");
-            UIVisualizator.getInstance().paint(network, networkVisualizationPanel);
-            neAComboBox.addItem(element.toString());
+            UIVisualizator.getInstance().paintGraph(network, networkVisualizationPanel);
+            neAComboBox.addItem(element.toString()); 
             neZComboBox.addItem(element.toString());
         }
     }//GEN-LAST:event_addNetworkElementButtonActionPerformed
@@ -706,11 +714,11 @@ public class NetworkPanel extends javax.swing.JPanel {
         if (UIValidator.getInstance().validate(logger, neAComboBox, neZComboBox)) {
             network.addLink(
                     new DoubleLink(isDuplexCheckBox.isSelected(), 0.0, 0.0, 0.0),
-                    neAComboBox.getSelectedIndex(),
+                    neAComboBox.getSelectedIndex(), 
                     neZComboBox.getSelectedIndex()
             );
             logger.trace("Link is added successfully");
-            UIVisualizator.getInstance().paint(network, networkVisualizationPanel);
+            UIVisualizator.getInstance().paintGraph(network, networkVisualizationPanel);
         }
     }//GEN-LAST:event_addLinkButtonActionPerformed
 
@@ -722,6 +730,9 @@ public class NetworkPanel extends javax.swing.JPanel {
                     Double.valueOf(neMinPriceSpinner.getValue().toString()),
                     Double.valueOf(neMaxPriceSpinner.getValue().toString())
             );
+            if (network.getSize() < 10) {
+                UIVisualizator.getInstance().paintGraph(network, networkVisualizationPanel);
+            }
             logger.trace("Network is generated successfully");
         }
     }//GEN-LAST:event_generateNetworkButtonActionPerformed

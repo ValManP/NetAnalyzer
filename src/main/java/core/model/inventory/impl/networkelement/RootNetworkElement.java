@@ -7,8 +7,7 @@ public class RootNetworkElement extends NetworkElement {
         super(capacity);
     }
 
-    @Override
-    public String toString() {
-        return "RootNetworkElement{" + '}';
+    public RootNetworkElement(String name, double capacity) {
+        super(name, capacity);
     }
 }

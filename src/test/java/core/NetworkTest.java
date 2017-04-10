@@ -138,8 +138,9 @@ public class NetworkTest {
         double maxPrice = 50.0;
 
         // Act
-        DoubleStorage storage = StorageController.getInstance()
-                .generateStorage(size, minCapacity, maxCapacity, minPrice, maxPrice);
+        DoubleStorage storage = new DoubleStorage();
+        StorageController.getInstance()
+                .generateStorage(storage, size, minCapacity, maxCapacity, minPrice, maxPrice);
 
         // Assert
         assertEquals(size, storage.getSize());
