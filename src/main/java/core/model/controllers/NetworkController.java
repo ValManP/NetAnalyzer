@@ -93,16 +93,20 @@ public class NetworkController {
         network.resize(layerSize * layersCount);
         Random random = new Random();
         double randomValue = 0;
-
+        NetworkElement element;
 
         for (int i = 0; i < layerSize; i++) {
             randomValue = (maxCapacity - minCapacity) * random.nextDouble() + minCapacity;
-            network.addRoot(new RootNetworkElement(randomValue), i);
+            element = new RootNetworkElement(randomValue);
+            network.addRoot(element, i);
+            element.generateName(i);
         }
 
         for (int row = 1; row < layersCount - 1; row++) {
             for (int col = 0; col < layerSize; col++) {
-                network.addEmptyElement(new EmptyElement(), row * layerSize + col);
+                element = new EmptyElement();
+                element.generateName(row * layerSize + col);
+                network.addEmptyElement(element, row * layerSize + col);
                 for (int i = 0; i < layerSize; i++) {
                     network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0),
                             (row - 1) * layerSize + i,
@@ -113,7 +117,9 @@ public class NetworkController {
 
 
         for (int col = 0; col < layerSize; col++) {
-            network.addUser(new UserNetworkElement(50, 30), (layersCount - 1) * layerSize + col);
+            element = new UserNetworkElement(50, 30);
+            element.generateName((layersCount - 1) * layerSize + col);
+            network.addUser(element, (layersCount - 1) * layerSize + col);
             for (int i = 0; i < layerSize; i++) {
                 network.addLink(new DoubleLink(false, 100.0, 20.0, 0.0),
                         (layersCount - 2) * layerSize + i,

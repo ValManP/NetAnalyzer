@@ -33,7 +33,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return name + " (capacity=" + capacity + ", price=" + price + ')';
+        return name + " (c:" + capacity + "/p:" + price + ')';
     }
     
     

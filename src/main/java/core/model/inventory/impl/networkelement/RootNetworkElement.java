@@ -10,4 +10,9 @@ public class RootNetworkElement extends NetworkElement {
     public RootNetworkElement(String name, double capacity) {
         super(name, capacity);
     }
+
+    @Override
+    public String getElementType() {
+        return "Root";
+    }
 }

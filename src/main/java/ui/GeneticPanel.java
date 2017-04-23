@@ -23,6 +23,7 @@ public class GeneticPanel extends javax.swing.JPanel {
     
     /**
      * Creates new form GeneticPanel
+     * @param evolution
      * @param storage
      * @param network
      */

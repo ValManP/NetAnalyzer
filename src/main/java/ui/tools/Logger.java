@@ -1,5 +1,4 @@
 package ui.tools;
-
 import javax.swing.text.JTextComponent;
 
 public class Logger {

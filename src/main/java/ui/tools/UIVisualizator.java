@@ -52,7 +52,7 @@ public class UIVisualizator {
                 createDataset(network, storage, data),
                 PlotOrientation.VERTICAL,
                 false, false, false);
-
+        
         ChartPanel chartPanel = new ChartPanel(xylineChart);
         chartPanel.setPreferredSize(new Dimension(420, 420));
         final XYPlot plot = xylineChart.getXYPlot();
@@ -105,7 +105,7 @@ public class UIVisualizator {
 
     private XYDataset createDataset(DoubleNetwork network, DoubleStorage storage, EvolutionResult data) {
         final XYSeries series = new XYSeries("Phenotype");
-
+        
         List<Phenotype> phenotypes = (List<Phenotype>) data.getPopulation().stream().collect(Collectors.toList());
         DoubleNetwork result = null;
         NetworkDescription networkDescription = new NetworkDescription(network, storage);

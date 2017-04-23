@@ -1,5 +1,7 @@
 package core.model.inventory;
 
+import java.util.Locale;
+
 public abstract class NetworkElement {
     public double capacity;
     protected String name;
@@ -30,6 +32,12 @@ public abstract class NetworkElement {
 
     @Override
     public String toString() {
-        return name + " (" + capacity + ")";
+        return name + " (" + String.format(Locale.US, "%.2f", capacity) + ")";
     }
+
+    public void generateName(int num) {
+        name = getElementType() + " " + num;
+    }
+
+    public abstract String getElementType();
 }

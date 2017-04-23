@@ -21,4 +21,9 @@ public class UserNetworkElement extends NetworkElement {
     public void setDesiredLevel(double desiredLevel) {
         this.desiredLevel = desiredLevel;
     }
+
+    @Override
+    public String getElementType() {
+        return "User";
+    }
 }
