@@ -186,7 +186,7 @@ public class ExperimentTest {
         DoubleNetwork largeNetwork = new DoubleNetwork();
         NetworkController.generateNetwork(largeNetwork, 10, 10, 150, 300);
         DoubleStorage largeStorage = new DoubleStorage();
-        StorageController.getInstance().generateStorage(largeStorage, 50, 100, 250, 100, 300);
+        StorageController.getInstance().generateStorage(largeStorage, 60, 100, 250, 100, 300);
 
         executor.addExperiment(new CrossoverExperiment(
                 new ExperimentParameters(largeNetwork, largeStorage, 0.1, 1,
