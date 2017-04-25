@@ -6,6 +6,7 @@ import core.ga.operators.fitness.GAFitness;
 import core.model.controllers.NetworkController;
 import core.model.network.NetworkDescription;
 import core.model.network.impl.DoubleNetwork;
+import core.model.strategies.ICapacityCalculationStrategy;
 import org.jenetics.AnyGene;
 import org.jenetics.Genotype;
 
@@ -13,8 +14,8 @@ public class ConstantWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Dou
     private double weight1;
     private double weight2;
 
-    public ConstantWeightFitness(NetworkDescription description, double weight1) {
-        networkDescription = description;
+    public ConstantWeightFitness(ICapacityCalculationStrategy capacityStrategy, NetworkDescription description, double weight1) {
+        super(capacityStrategy, description);
         this.weight1 = weight1;
         this.weight2 = 1 - weight1;
     }
@@ -23,7 +24,7 @@ public class ConstantWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Dou
     public Double eval(Genotype<AnyGene<NetworkAllele>> gt) {
         DoubleNetwork network = GANetworkController.applyConfiguration(networkDescription, gt.getChromosome());
 
-        double averageCapacity = normalizeCapacity(NetworkController.calculateNetworkCapacityByMinValue(network));
+        double averageCapacity = normalizeCapacity(calculateCapacity());
         double cost = normalizeCost(NetworkController.calculateNetworkCost(network));
 
         return weight1 * averageCapacity - weight2 * cost;

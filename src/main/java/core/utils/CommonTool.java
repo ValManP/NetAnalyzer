@@ -1,7 +1,7 @@
 package core.utils;
 
 public class CommonTool {
-    public static boolean isBelong(int x, int rangeFrom, int rangeTo) {
+    static boolean isBelong(int x, int rangeFrom, int rangeTo) {
         return (x >= rangeFrom && x <= rangeTo);
     }
 
@@ -14,6 +14,10 @@ public class CommonTool {
     }
 
     public static boolean isNotNull(String str) {
-        return (str != "") && isExist(str);
+        return !"".equals(str) && isExist(str);
+    }
+
+    public static boolean isNull(String str) {
+        return "".equals(str) || !isExist(str);
     }
 }

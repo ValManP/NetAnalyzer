@@ -47,6 +47,7 @@ public class UserForm extends javax.swing.JFrame {
         nextPreviousButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Network Analyzer");
         setBackground(java.awt.SystemColor.window);
         setPreferredSize(new java.awt.Dimension(960, 730));
         setResizable(false);
@@ -66,7 +67,7 @@ public class UserForm extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
                 jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                                .addContainerGap(728, Short.MAX_VALUE)
+                                .addContainerGap(875, Short.MAX_VALUE)
                                 .addComponent(nextPreviousButton)
                                 .addContainerGap())
         );
@@ -87,7 +88,7 @@ public class UserForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(764, Short.MAX_VALUE)
+                                .addContainerGap(696, Short.MAX_VALUE)
                                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );

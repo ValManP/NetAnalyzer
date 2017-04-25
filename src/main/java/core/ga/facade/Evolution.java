@@ -13,6 +13,8 @@ import core.ga.operators.factories.impl.SelectorFactory;
 import core.ga.operators.fitness.FitnessTypes;
 import core.model.inventory.AbstractStorage;
 import core.model.network.AbstractNetwork;
+import core.model.strategies.ICapacityCalculationStrategy;
+import core.model.strategies.MinGuaranteedCapacityStrategy;
 import org.jenetics.Alterer;
 import org.jenetics.AnyGene;
 import org.jenetics.Phenotype;
@@ -31,6 +33,7 @@ public class Evolution {
     private AbstractNetwork network;
     private AbstractStorage storage;
     private FitnessTypes fitness;
+    private ICapacityCalculationStrategy capacityCalculationStrategy = new MinGuaranteedCapacityStrategy();
     private Engine engine;
     private Engine.Builder builder;
 
@@ -61,8 +64,13 @@ public class Evolution {
         return this;
     }
 
+    public Evolution capacityCalculationStrategy(ICapacityCalculationStrategy capacityCalculationStrategy) {
+        this.capacityCalculationStrategy = capacityCalculationStrategy;
+        return this;
+    }
+
     public Evolution builder() {
-        builder = GANetworkController.compileBuilder(network, storage, fitness);
+        builder = GANetworkController.compileBuilder(network, storage, fitness, capacityCalculationStrategy);
         return this;
     }
 

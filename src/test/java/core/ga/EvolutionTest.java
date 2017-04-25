@@ -16,6 +16,7 @@ import core.model.inventory.impl.storage.DoubleStorage;
 import core.model.network.AbstractNetwork;
 import core.model.network.impl.DoubleLink;
 import core.model.network.impl.DoubleNetwork;
+import core.model.strategies.MostDistantClientCapacityStrategy;
 import org.jenetics.MonteCarloSelector;
 import org.jenetics.Phenotype;
 import org.jenetics.engine.EvolutionResult;
@@ -175,11 +176,12 @@ public class EvolutionTest {
         int generations = 3;
 
         DoubleNetwork largeNetwork = new DoubleNetwork();
-        NetworkController.generateNetwork(largeNetwork, 10, 10, 150, 300);
+        NetworkController.generateNetwork(largeNetwork, 5, 5, 150, 300);
         DoubleStorage largeStorage = new DoubleStorage();
         StorageController.getInstance().generateStorage(largeStorage, 100, 100, 250, 100, 300);
 
         Evolution evolution = (new Evolution(largeNetwork, largeStorage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.5)))
+                .capacityCalculationStrategy(new MostDistantClientCapacityStrategy())
                 .builder()
                 .alterer(CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01))
                 .selector(SelectorTypes.TOURNAMENT_SELECTOR)

@@ -13,6 +13,7 @@ import core.model.inventory.impl.storage.Device;
 import core.model.network.AbstractNetwork;
 import core.model.network.NetworkDescription;
 import core.model.network.impl.DoubleNetwork;
+import core.model.strategies.ICapacityCalculationStrategy;
 import org.jenetics.AnyGene;
 import org.jenetics.Chromosome;
 import org.jenetics.engine.Engine;
@@ -23,13 +24,14 @@ import java.util.function.Predicate;
 import java.util.stream.Collector;
 
 public class GANetworkController {
-    public static Engine.Builder compileBuilder(AbstractNetwork network, AbstractStorage storage, FitnessTypes fitness) {
+    public static Engine.Builder compileBuilder(AbstractNetwork network, AbstractStorage storage, FitnessTypes fitness,
+                                                ICapacityCalculationStrategy capacityCalculationStrategy) {
         NetworkDescription networkDescription = new NetworkDescription(network, storage);
         int emptyPosCount = network.getEmptyPosition().size();
         networkDescription.setMinDeviceCount(emptyPosCount - emptyPosCount / 3);
 
         FitnessFactory fitnessFactory = new FitnessFactory();
-        GAFitness<AnyGene<NetworkAllele>, Double> fitnessFunction = fitnessFactory.getFitness(fitness, networkDescription);
+        GAFitness<AnyGene<NetworkAllele>, Double> fitnessFunction = fitnessFactory.getFitness(fitness, capacityCalculationStrategy, networkDescription);
 
         return Engine.builder(fitnessFunction::eval, createNetworkConfigurationFactory(networkDescription));
     }

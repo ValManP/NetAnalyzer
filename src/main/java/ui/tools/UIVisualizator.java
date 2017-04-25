@@ -72,9 +72,9 @@ public class UIVisualizator {
         fillGraphFromNetwork(graph, network);
 
         Layout<String, String> layout = new CircleLayout(graph);
-        layout.setSize(new Dimension(350, 500));
+        layout.setSize(new Dimension(panel.getSize().width, panel.getSize().height - 30));
         BasicVisualizationServer<String, String> server = new BasicVisualizationServer(layout);
-        server.setPreferredSize(new Dimension(350, 500));
+        server.setSize(new Dimension(panel.getSize().width, panel.getSize().height - 30));
         configureGraph(server);
 
         panel.add(server, BorderLayout.PAGE_START);

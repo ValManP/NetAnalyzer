@@ -23,7 +23,6 @@ public class GeneticPanel extends javax.swing.JPanel {
     
     /**
      * Creates new form GeneticPanel
-     * @param evolution
      * @param storage
      * @param network
      */
@@ -77,6 +76,7 @@ public class GeneticPanel extends javax.swing.JPanel {
         logTextArea = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(934, 620));
 
         runGAPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
         runGAPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Run GA"));
@@ -174,7 +174,7 @@ public class GeneticPanel extends javax.swing.JPanel {
 
         initialPopulationTextField.setText("10");
 
-        crossoverProbabilityLabel.setText("Crossover Probability:");
+        crossoverProbabilityLabel.setText("Crossover Probability");
         crossoverProbabilityLabel.setToolTipText("");
 
         applyButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
@@ -197,11 +197,13 @@ public class GeneticPanel extends javax.swing.JPanel {
 
         mutatorTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"MUTATOR", "SWAP_MUTATOR"}));
 
-        mutatorProbabilityLabel.setText("Mutation Probability:");
+        mutatorProbabilityLabel.setText("Mutation Probability");
         mutatorProbabilityLabel.setToolTipText("");
 
+        crossoverProbabilitySpinner.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         crossoverProbabilitySpinner.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.0d, 1.0d, 0.1d));
 
+        mutatorProbabilitySpinner.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         mutatorProbabilitySpinner.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.0d, 1.0d, 0.1d));
 
         selectionTypeLabel.setText("Selector Type:");
@@ -248,24 +250,19 @@ public class GeneticPanel extends javax.swing.JPanel {
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(fitnessFunctionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(manualConfigPanelLayout.createSequentialGroup()
-                                                                .addComponent(crossoverProbabilityLabel)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(crossoverProbabilitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(manualConfigPanelLayout.createSequentialGroup()
-                                                                .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manualConfigPanelLayout.createSequentialGroup()
-                                                                                        .addComponent(selectionVariableLabel)
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                        .addComponent(selectionVariableTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manualConfigPanelLayout.createSequentialGroup()
-                                                                                        .addComponent(mutatorProbabilityLabel)
-                                                                                        .addGap(18, 18, 18)
-                                                                                        .addComponent(mutatorProbabilitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                                .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addComponent(crossoverProbabilityLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manualConfigPanelLayout.createSequentialGroup()
+                                                                        .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(mutatorProbabilityLabel)
+                                                                                .addComponent(selectionVariableLabel))
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                        .addGroup(manualConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(selectionVariableTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(mutatorProbabilitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(crossoverProbabilitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         manualConfigPanelLayout.setVerticalGroup(
@@ -330,15 +327,17 @@ public class GeneticPanel extends javax.swing.JPanel {
         );
         populationVisualizationPanelLayout.setVerticalGroup(
                 populationVisualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 420, Short.MAX_VALUE)
         );
 
         logPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
         logPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Log"));
+        logPanel.setPreferredSize(new java.awt.Dimension(914, 169));
 
         logTextArea.setColumns(20);
         logTextArea.setLineWrap(true);
         logTextArea.setRows(5);
+        logTextArea.setWrapStyleWord(true);
         logScrollPane.setViewportView(logTextArea);
 
         javax.swing.GroupLayout logPanelLayout = new javax.swing.GroupLayout(logPanel);
@@ -354,7 +353,7 @@ public class GeneticPanel extends javax.swing.JPanel {
                 logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(logPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                                .addComponent(logScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                                 .addContainerGap())
         );
 
@@ -365,13 +364,13 @@ public class GeneticPanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(gaConfigurationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(runGAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
-                                        .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -383,10 +382,10 @@ public class GeneticPanel extends javax.swing.JPanel {
                                                 .addComponent(gaConfigurationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(runGAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))
+                                        .addComponent(populationVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(logPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

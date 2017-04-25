@@ -20,7 +20,7 @@ public class UIValidator {
         boolean correct = true;
         for (JComponent component : components) {
             if (component instanceof JTextField) {
-                if (!CommonTool.isNotNull(((JTextField) component).getText())) {// TODO Incorrect
+                if (CommonTool.isNull(((JTextField) component).getText())) {
                     correct = false;
                     component.setBackground(Color.red);
                     continue;

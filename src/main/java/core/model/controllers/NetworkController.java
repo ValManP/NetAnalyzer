@@ -37,7 +37,7 @@ public class NetworkController {
         return (networkCapacity == Double.MAX_VALUE) ? 0.0 : networkCapacity;
     }
 
-    private static double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement user) {
+    public static double calculateNetworkCapacityForUser(DoubleNetwork network, NetworkElement user) {
         int size = network.getNetworkElementsCount();
         double[][] networkMatrix = convertNetworkToArray(network, size);
         int userPosition = network.getNEPosition(user);
@@ -92,7 +92,7 @@ public class NetworkController {
     public static void generateNetwork(DoubleNetwork network, int layerSize, int layersCount, double minCapacity, double maxCapacity) {
         network.resize(layerSize * layersCount);
         Random random = new Random();
-        double randomValue = 0;
+        double randomValue;
         NetworkElement element;
 
         for (int i = 0; i < layerSize; i++) {
@@ -114,7 +114,6 @@ public class NetworkController {
                 }
             }
         }
-
 
         for (int col = 0; col < layerSize; col++) {
             element = new UserNetworkElement(50, 30);

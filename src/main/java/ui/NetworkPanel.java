@@ -147,7 +147,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                                                 .addComponent(removeDeviceLabel)
                                                 .addComponent(removeDeviceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(removeDeviceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         addDevicePanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
@@ -209,7 +209,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                                         .addComponent(devicePriceLabel)
                                         .addComponent(deviceCapacitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(devicePriceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout manualStorageCreationPanelLayout = new javax.swing.GroupLayout(manualStorageCreationPanel);
@@ -224,8 +224,8 @@ public class NetworkPanel extends javax.swing.JPanel {
                         .addGroup(manualStorageCreationPanelLayout.createSequentialGroup()
                                 .addComponent(addDevicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(removeDevicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(removeDevicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         autoStorageCreationPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
@@ -521,7 +521,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                         .addGroup(manualNetworkCreationPanelLayout.createSequentialGroup()
                                 .addComponent(addNetworkElementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addLinkPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(addLinkPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         autoNetworkCreationPanel.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.borderHighlight"));
@@ -560,17 +560,14 @@ public class NetworkPanel extends javax.swing.JPanel {
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(generateNetworkButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
-                                                .addComponent(layersCountLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(layersCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 3, Short.MAX_VALUE))
-                                        .addGroup(autoNetworkCreationPanelLayout.createSequentialGroup()
                                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(neMaxCapacityLabel)
                                                         .addComponent(layerLengthLabel)
-                                                        .addComponent(neMinPriceLabel))
+                                                        .addComponent(neMinPriceLabel)
+                                                        .addComponent(layersCountLabel))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(layersCountSpinner)
                                                         .addComponent(layerSizeSpinner, javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(neMaxPriceSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                                                         .addComponent(neMinPriceSpinner, javax.swing.GroupLayout.Alignment.TRAILING))))
@@ -583,7 +580,7 @@ public class NetworkPanel extends javax.swing.JPanel {
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(layersCountLabel)
                                         .addComponent(layersCountSpinner))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(autoNetworkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(layerSizeSpinner)
                                         .addComponent(layerLengthLabel))
@@ -612,8 +609,11 @@ public class NetworkPanel extends javax.swing.JPanel {
         );
         networkCreationPanelLayout.setVerticalGroup(
                 networkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(autoNetworkCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manualNetworkCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(networkCreationPanelLayout.createSequentialGroup()
+                                .addGroup(networkCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(autoNetworkCreationPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(manualNetworkCreationPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -637,13 +637,13 @@ public class NetworkPanel extends javax.swing.JPanel {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(storageCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(networkCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(networkCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(networkVisualizationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
