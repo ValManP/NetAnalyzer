@@ -2,6 +2,7 @@ package experiments;
 
 import core.ga.facade.Evolution;
 import core.ga.operators.fitness.FitnessTypes;
+import core.model.strategies.MostDistantClientCapacityStrategy;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,7 +30,9 @@ public abstract class AbstractExperiment {
 
     protected Evolution createEvolution(ExperimentParameters parameters) {
         return (new Evolution(parameters.getNetwork(), parameters.getStorage(), FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.5))
-        ).builder()
+        )
+                .capacityCalculationStrategy(new MostDistantClientCapacityStrategy())
+                .builder()
                 .alterer(parameters.getCrossover(), parameters.getMutator())
                 .selector(parameters.getSelector())
                 .initialPopulation(parameters.getInitialPopulation())

@@ -27,7 +27,7 @@ public class RandomWeightFitness extends GAFitness<AnyGene<NetworkAllele>, Doubl
     public Double eval(Genotype<AnyGene<NetworkAllele>> gt) {
         DoubleNetwork network = GANetworkController.applyConfiguration(networkDescription, gt.getChromosome());
 
-        double averageCapacity = normalizeCapacity(calculateCapacity());
+        double averageCapacity = normalizeCapacity(calculateCapacity(network));
         double cost = normalizeCost(NetworkController.calculateNetworkCost(network));
 
         return weight1 * averageCapacity - weight2 * cost;

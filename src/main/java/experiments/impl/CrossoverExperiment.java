@@ -28,7 +28,7 @@ public class CrossoverExperiment extends AbstractExperiment {
     @Override
     public void execute() {
         for (CrossoverTypes type : crossoverTypes) {
-            double probability = 0;
+            double probability = 0.5;
             writeToLog(type.name());
             while (probability <= 1) {
                 for (int i = 0; i < parameters.getTimeOfExecution(); i++) {

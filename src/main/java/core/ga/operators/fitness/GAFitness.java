@@ -1,5 +1,6 @@
 package core.ga.operators.fitness;
 
+import core.model.network.AbstractNetwork;
 import core.model.network.NetworkDescription;
 import core.model.strategies.ICapacityCalculationStrategy;
 import org.jenetics.Gene;
@@ -26,7 +27,7 @@ public abstract class GAFitness<G extends Gene<?, G>, R> {
                 / (networkDescription.capacityNormalizeCoefficient.getMax() - networkDescription.capacityNormalizeCoefficient.getMin());
     }
 
-    protected double calculateCapacity() {
-        return capacityStrategy.calculate(networkDescription.getNetwork());
+    protected double calculateCapacity(AbstractNetwork network) {
+        return capacityStrategy.calculate(network);
     }
 }

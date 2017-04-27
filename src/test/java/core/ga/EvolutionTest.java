@@ -173,17 +173,17 @@ public class EvolutionTest {
     @Test
     public void canEvolveWithLargeNet() {
         // Arrange
-        int generations = 3;
+        int generations = 5;
 
         DoubleNetwork largeNetwork = new DoubleNetwork();
-        NetworkController.generateNetwork(largeNetwork, 5, 5, 150, 300);
+        NetworkController.generateNetwork(largeNetwork, 3, 3, 150, 300);
         DoubleStorage largeStorage = new DoubleStorage();
-        StorageController.getInstance().generateStorage(largeStorage, 100, 100, 250, 100, 300);
+        StorageController.getInstance().generateStorage(largeStorage, 10, 100, 250, 100, 300);
 
         Evolution evolution = (new Evolution(largeNetwork, largeStorage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.5)))
                 .capacityCalculationStrategy(new MostDistantClientCapacityStrategy())
                 .builder()
-                .alterer(CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.2), MutatorTypes.MUTATOR.withProbability(0.01))
+                .alterer(CrossoverTypes.SINGLE_POINT_CROSSOVER.withProbability(0.5), MutatorTypes.MUTATOR.withProbability(0.05))
                 .selector(SelectorTypes.TOURNAMENT_SELECTOR)
                 .initialPopulation(10)
                 .buildEngine();

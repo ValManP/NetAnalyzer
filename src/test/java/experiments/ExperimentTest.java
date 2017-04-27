@@ -25,19 +25,19 @@ import static org.junit.Assert.assertNotNull;
 
 @Ignore
 public class ExperimentTest {
-    private int storageSize = 20;
-    private int networkSize = 21;
+    private int storageSize = 120;
     private double minCapacity = 60, maxCapacity = 140, minPrice = 50, maxPrice = 120;
     private AbstractNetwork network;
     private AbstractStorage storage;
 
     @Before
     public void setUp() throws Exception {
-        network = createNetwork(networkSize);
-        storage = createStorage(storageSize, minCapacity, maxCapacity, minPrice, maxPrice);
+        network = new DoubleNetwork();
+        NetworkController.generateNetwork((DoubleNetwork) network, 7, 7, 60, 300);
+        storage = new DoubleStorage();
+        StorageController.getInstance().generateStorage((DoubleStorage) storage, storageSize, minCapacity, maxCapacity, minPrice, maxPrice);
     }
 
-    @Ignore
     @Test
     public void canExecuteCrossoverExperiment() {
         // Arrange
@@ -55,7 +55,6 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
-    @Ignore
     @Test
     public void canExecuteMutatorExperiment() {
         // Arrange
@@ -73,7 +72,6 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
-    @Ignore
     @Test
     public void canExecutePopulationExperiment() {
         // Arrange
@@ -91,7 +89,6 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
-    @Ignore
     @Test
     public void canExecuteSelectorExperiment() {
         // Arrange
@@ -109,7 +106,6 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
-    @Ignore
     @Test
     public void canExecuteConvergenceExperiment() {
         // Arrange
@@ -161,7 +157,6 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
-    @Ignore
     @Test
     public void canExecuteConvergenceWithTournamentSelectorExperiment() {
         // Arrange

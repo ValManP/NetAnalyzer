@@ -23,7 +23,7 @@ public class MutatorExperiment extends AbstractExperiment {
     @Override
     public void execute() {
         for (MutatorTypes type : mutatorTypes) {
-            double probability = 0;
+            double probability = 0.5;
             writeToLog(type.name());
             while (probability <= 1) {
                 for (int i = 0; i < parameters.getTimeOfExecution(); i++) {
