@@ -1,8 +1,6 @@
 language: java
 jdk: oraclejdk8
 install: true
-before_install:
-  - export LD_LIBRARY_PATH=$HOME/libs/:$LD_LIBRARY_PATH
 cache:
   directories:
   - $HOME/.m2
