@@ -81,6 +81,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <argLine>-Djava.library.path=${basedir}/libs -Djni.library.path=${basedir}/libs</argLine>
                 </configuration>
             </plugin>
             <plugin>
