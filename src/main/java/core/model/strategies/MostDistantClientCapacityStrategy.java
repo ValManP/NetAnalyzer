@@ -39,7 +39,7 @@ public class MostDistantClientCapacityStrategy implements ICapacityCalculationSt
 
         for (int i = 0; i < network.getSize(); i++) {
             if (position != i && CommonTool.isExist(network.getLinksMatrix()[i][position])) {
-                capacity += network.getLinksMatrix()[i][position].getCapacity();
+                capacity += network.getNetworkElement(i).getCapacity();
             }
         }
 

@@ -85,6 +85,10 @@ public abstract class AbstractNetwork<TrafficType, NetworkElement> {
         return CommonTool.isBelong(source, size) && CommonTool.isBelong(target, size) && CommonTool.isExist(linksMatrix[source][target]);
     }
 
+    public NetworkElement getNetworkElement(int num) {
+        return networkElements.get(num);
+    }
+
     public List<NetworkElement> getNetworkElements() {
         return networkElements;
     }

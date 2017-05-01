@@ -25,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
 
 @Ignore
 public class ExperimentTest {
-    private int storageSize = 120;
+    private int storageSize = 60;
     private double minCapacity = 60, maxCapacity = 140, minPrice = 50, maxPrice = 120;
     private AbstractNetwork network;
     private AbstractStorage storage;
@@ -174,6 +174,7 @@ public class ExperimentTest {
         assertNotNull(executor);
     }
 
+    @Ignore
     @Test
     public void canExecuteExperimentsWithLargeNetwork() {
         // Arrange

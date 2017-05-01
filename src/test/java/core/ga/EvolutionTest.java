@@ -23,6 +23,9 @@ import org.jenetics.engine.EvolutionResult;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -178,7 +181,7 @@ public class EvolutionTest {
         DoubleNetwork largeNetwork = new DoubleNetwork();
         NetworkController.generateNetwork(largeNetwork, 3, 3, 150, 300);
         DoubleStorage largeStorage = new DoubleStorage();
-        StorageController.getInstance().generateStorage(largeStorage, 10, 100, 250, 100, 300);
+        StorageController.getInstance().generateStorage(largeStorage, 4, 100, 250, 100, 300);
 
         Evolution evolution = (new Evolution(largeNetwork, largeStorage, FitnessTypes.CONSTANT_WEIGHT_FITNESS.withFitnessVariable(0.5)))
                 .capacityCalculationStrategy(new MostDistantClientCapacityStrategy())
@@ -193,6 +196,14 @@ public class EvolutionTest {
                 .evolve(generations);
 
         // Assert
+        try {
+            FileWriter fileWriter = new FileWriter("test.txt", true);
+            fileWriter.write(result.getBestFitness() + "\n");
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.print(e);
+        }
+
         assertNotNull(result);
     }
 

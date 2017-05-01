@@ -77,7 +77,9 @@ public class NetworkController {
                 if (row == col) {
                     networkArray[row][col] = networkElements.get(row).getCapacity();
                 } else {
-                    if (network.isLinkExist(row, col)) {
+                    if (network.isLinkExist(row, col)
+                            && !(networkElements.get(row) instanceof EmptyElement)
+                            && !(networkElements.get(col) instanceof EmptyElement)) {
                         networkArray[row][col] = 1.0;
                     } else {
                         networkArray[row][col] = 0.0;
